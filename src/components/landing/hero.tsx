@@ -9,8 +9,8 @@ export function Hero() {
         className="pointer-events-none absolute -right-24 -top-16 size-[28rem] rounded-full bg-[radial-gradient(circle,oklch(0.78_0.1_70_/_0.4),transparent_68%)]"
       />
       <div className="relative mx-auto max-w-6xl">
-        <p className="text-xs font-medium tracking-[0.2em] text-primary uppercase">
-          Grovetown · Augusta · the CSRA
+        <p className="text-xs font-medium tracking-[0.2em] text-primary">
+          Grovetown · Augusta · The CSRA
         </p>
         <h1 className="font-heading mt-4 max-w-xl text-4xl leading-[1.08] tracking-tight sm:text-5xl lg:text-[3.4rem]">
           Fun with a{" "}
