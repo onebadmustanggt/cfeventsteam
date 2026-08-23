@@ -3,11 +3,12 @@
 import { useState } from "react";
 import { CheckCircle2, Loader2 } from "lucide-react";
 
-import { Button } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { site } from "@/lib/site";
+import { cn } from "@/lib/utils";
 
 type Status = "idle" | "loading" | "success" | "error";
 
@@ -29,17 +30,25 @@ export function ContactForm() {
     event.preventDefault();
     event.stopPropagation();
 
-    if (!name.trim()) {
+    const data = new FormData(event.currentTarget);
+    const nextName = String(data.get("name") ?? name).trim();
+    const nextEmail = String(data.get("email") ?? email).trim();
+    const nextMessage = String(data.get("message") ?? message).trim();
+    setName(nextName);
+    setEmail(nextEmail);
+    setMessage(nextMessage);
+
+    if (!nextName) {
       setStatus("error");
       setError("Tell us your name so we know who to write back.");
       return;
     }
-    if (!email.trim()) {
+    if (!nextEmail) {
       setStatus("error");
       setError("Add an email so we can reply.");
       return;
     }
-    if (!message.trim()) {
+    if (!nextMessage) {
       setStatus("error");
       setError("A short note helps — which event, and what you need.");
       return;
@@ -52,7 +61,12 @@ export function ContactForm() {
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, role, message }),
+        body: JSON.stringify({
+          name: nextName,
+          email: nextEmail,
+          role,
+          message: nextMessage,
+        }),
       });
       const data = (await response.json()) as { error?: string };
 
@@ -196,7 +210,11 @@ export function ContactForm() {
         </p>
       )}
 
-      <Button type="submit" size="lg" disabled={status === "loading"} className="h-11 px-5">
+      <button
+        type="submit"
+        disabled={status === "loading"}
+        className={cn(buttonVariants({ variant: "default", size: "lg" }), "h-11 px-5")}
+      >
         {status === "loading" ? (
           <>
             <Loader2 className="size-4 animate-spin" />
@@ -205,7 +223,7 @@ export function ContactForm() {
         ) : (
           "Send message"
         )}
-      </Button>
+      </button>
     </form>
   );
 }
