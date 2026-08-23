@@ -172,7 +172,7 @@ export const faqs = [
   },
   {
     q: "How can I become a vendor at one of your events?",
-    a: "Vendor applications are available directly through our website. Visit the event you are interested in, review the vendor information, and complete the online application to be considered.",
+    a: "Vendor applications are sent directly by email. If you’re interested in participating in one of our events, reach out to us or join our vendor email list to receive application opportunities as they become available.",
   },
   {
     q: "Are your markets indoors or outdoors?",
