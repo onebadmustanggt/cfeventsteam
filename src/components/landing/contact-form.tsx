@@ -227,7 +227,7 @@ export function ContactForm() {
           disabled={loading}
           placeholder="Which event, what you sell, or how we can work together."
           onChange={(event) => setMessage(event.target.value.slice(0, MESSAGE_MAX))}
-          className={cn(fieldClassName, "h-auto min-h-32 py-2")}
+          className={cn(fieldClassName, "h-auto min-h-32 resize-none py-2")}
         />
         <p className="text-right text-xs text-muted-foreground">
           {message.length}/{MESSAGE_MAX}
