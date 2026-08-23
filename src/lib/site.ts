@@ -43,7 +43,7 @@ export const navLinks = [
   { href: "#events", label: "Events" },
   { href: "#about", label: "About" },
   { href: "#services", label: "Services" },
-  { href: "#contact", label: "Contact" },
+  { href: `mailto:${site.email}`, label: "Contact" },
 ] as const;
 
 export const aboutCopy = {
@@ -109,7 +109,7 @@ export const events = [
     ],
     cta: {
       label: "Get in touch",
-      href: "#contact",
+      href: `mailto:${site.email}`,
     },
   },
   {
@@ -130,7 +130,7 @@ export const events = [
     ],
     cta: {
       label: "Apply to vend",
-      href: "#contact",
+      href: `mailto:${site.email}`,
     },
   },
 ];
