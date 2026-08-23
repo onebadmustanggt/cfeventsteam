@@ -4,9 +4,9 @@ import { useState } from "react";
 import { Menu, X } from "lucide-react";
 
 import { BrandMark } from "@/components/landing/brand-mark";
-import { InstagramIcon } from "@/components/landing/instagram-icon";
+import { SocialLinks } from "@/components/landing/social-links";
 import { buttonVariants } from "@/components/ui/button";
-import { navLinks, site } from "@/lib/site";
+import { navLinks } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
 export function SiteHeader() {
@@ -37,19 +37,8 @@ export function SiteHeader() {
           ))}
         </nav>
 
-        <div className="flex items-center gap-2">
-          <a
-            href={site.instagram.url}
-            target="_blank"
-            rel="noreferrer"
-            aria-label="Instagram"
-            className={cn(
-              buttonVariants({ variant: "ghost", size: "icon" }),
-              "hidden sm:inline-flex",
-            )}
-          >
-            <InstagramIcon className="size-4" />
-          </a>
+        <div className="flex items-center gap-1 sm:gap-2">
+          <SocialLinks className="hidden sm:flex" />
           <a
             href="#contact"
             className={cn(
@@ -95,6 +84,7 @@ export function SiteHeader() {
               </a>
             ))}
           </nav>
+          <SocialLinks className="mt-3" />
           <a
             href="#contact"
             onClick={closeMenu}

@@ -17,7 +17,7 @@ export const site = {
   },
   facebook: {
     name: "The CF Events Team",
-    url: "https://www.facebook.com/cf.events.team",
+    url: "https://www.facebook.com/CF.VendorEvents",
   },
   venue: {
     name: "720 Collective Studio | Spa",

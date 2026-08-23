@@ -1,5 +1,5 @@
 import { BrandMark } from "@/components/landing/brand-mark";
-import { InstagramIcon } from "@/components/landing/instagram-icon";
+import { SocialLinks } from "@/components/landing/social-links";
 import { Separator } from "@/components/ui/separator";
 import { navLinks, site } from "@/lib/site";
 
@@ -25,44 +25,13 @@ export function SiteFooter() {
           </div>
           <div>
             <p className="font-medium">Connect</p>
-            <ul className="mt-3 space-y-2 text-muted-foreground">
-              <li>
-                <a
-                  href={site.instagram.url}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center gap-1.5 hover:text-foreground"
-                >
-                  <InstagramIcon className="size-3.5" />
-                  Instagram {site.instagram.handle}
-                </a>
-              </li>
-              <li>
-                <a
-                  href={site.tiktok.url}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="hover:text-foreground"
-                >
-                  TikTok {site.tiktok.handle}
-                </a>
-              </li>
-              <li>
-                <a
-                  href={site.facebook.url}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="hover:text-foreground"
-                >
-                  Facebook · {site.facebook.name}
-                </a>
-              </li>
-              <li>
-                <a href={`mailto:${site.email}`} className="hover:text-foreground">
-                  {site.email}
-                </a>
-              </li>
-            </ul>
+            <SocialLinks className="mt-3 -ml-1.5" />
+            <a
+              href={`mailto:${site.email}`}
+              className="mt-3 block text-muted-foreground hover:text-foreground"
+            >
+              {site.email}
+            </a>
           </div>
         </div>
       </div>

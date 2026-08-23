@@ -1,4 +1,4 @@
-import { InstagramIcon } from "@/components/landing/instagram-icon";
+import { InstagramIcon } from "@/components/landing/social-icons";
 import { Button } from "@/components/ui/button";
 import { site } from "@/lib/site";
 
