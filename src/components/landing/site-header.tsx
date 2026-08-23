@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Menu, X } from "lucide-react";
 
 import { BrandMark } from "@/components/landing/brand-mark";
+import { SiteTicker } from "@/components/landing/site-ticker";
 import { SocialLinks } from "@/components/landing/social-links";
 import { buttonVariants } from "@/components/ui/button";
 import { navLinks } from "@/lib/site";
@@ -97,6 +98,7 @@ export function SiteHeader() {
           </a>
         </div>
       ) : null}
+      <SiteTicker />
     </header>
   );
 }
