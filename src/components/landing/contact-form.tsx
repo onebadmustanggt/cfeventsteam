@@ -27,6 +27,7 @@ export function ContactForm() {
 
   async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    event.stopPropagation();
 
     if (!name.trim()) {
       setStatus("error");
@@ -72,34 +73,35 @@ export function ContactForm() {
     return (
       <div
         role="status"
-        className="rounded-2xl border border-primary/20 bg-primary/5 px-5 py-6"
+        className="rounded-2xl border border-primary/25 bg-primary/10 px-5 py-8 text-center"
       >
-        <div className="flex items-start gap-3">
-          <CheckCircle2 className="mt-0.5 size-5 shrink-0 text-primary" />
-          <div>
-            <p className="font-medium">We have your note.</p>
-            <p className="mt-2 text-sm text-muted-foreground">
-              This page does not store messages yet. For a sure reply, write{" "}
-              <a className="underline underline-offset-4" href={`mailto:${site.email}`}>
-                {site.email}
-              </a>{" "}
-              or the vendor desk at{" "}
-              <a
-                className="underline underline-offset-4"
-                href={`mailto:${site.vendorEmail}`}
-              >
-                {site.vendorEmail}
-              </a>
-              .
-            </p>
-          </div>
-        </div>
+        <CheckCircle2 className="mx-auto size-8 text-primary" />
+        <p className="font-heading mt-3 text-2xl">We have your note.</p>
+        <p className="mt-2 text-sm text-muted-foreground">
+          This page does not store messages yet. For a sure reply, write{" "}
+          <a className="underline underline-offset-4" href={`mailto:${site.email}`}>
+            {site.email}
+          </a>{" "}
+          or the vendor desk at{" "}
+          <a className="underline underline-offset-4" href={`mailto:${site.vendorEmail}`}>
+            {site.vendorEmail}
+          </a>
+          .
+        </p>
       </div>
     );
   }
 
+  const invalid = status === "error";
+
   return (
-    <form onSubmit={onSubmit} className="space-y-4" noValidate>
+    <form
+      onSubmit={onSubmit}
+      method="post"
+      action="#contact"
+      className="space-y-4"
+      noValidate
+    >
       <div className="grid gap-4 sm:grid-cols-2">
         <div className="space-y-2">
           <Label htmlFor="name">Name</Label>
@@ -110,10 +112,14 @@ export function ContactForm() {
             value={name}
             disabled={status === "loading"}
             placeholder="Your name"
+            aria-invalid={invalid && !name.trim()}
             className="h-11 bg-card px-3"
             onChange={(event) => {
               setName(event.target.value);
-              if (status === "error") setStatus("idle");
+              if (status === "error") {
+                setStatus("idle");
+                setError("");
+              }
             }}
           />
         </div>
@@ -127,10 +133,14 @@ export function ContactForm() {
             value={email}
             disabled={status === "loading"}
             placeholder="you@email.com"
+            aria-invalid={invalid && !email.trim()}
             className="h-11 bg-card px-3"
             onChange={(event) => {
               setEmail(event.target.value);
-              if (status === "error") setStatus("idle");
+              if (status === "error") {
+                setStatus("idle");
+                setError("");
+              }
             }}
           />
         </div>
@@ -165,28 +175,30 @@ export function ContactForm() {
           value={message}
           disabled={status === "loading"}
           placeholder="Which event, what you sell, or how many tickets you need."
+          aria-invalid={invalid && !message.trim()}
           className="min-h-32 bg-card"
           onChange={(event) => {
             setMessage(event.target.value);
-            if (status === "error") setStatus("idle");
+            if (status === "error") {
+              setStatus("idle");
+              setError("");
+            }
           }}
         />
       </div>
 
-      <p
-        aria-live="polite"
-        className={
-          status === "error"
-            ? "text-sm text-destructive"
-            : "text-sm text-muted-foreground"
-        }
-      >
-        {status === "loading"
-          ? "Sending your note…"
-          : status === "error"
-            ? error
-            : "We’ll point you to the right inbox. Nothing is stored on this demo form."}
-      </p>
+      {invalid ? (
+        <p
+          role="alert"
+          className="rounded-lg border border-destructive/30 bg-destructive/10 px-3 py-2 text-sm text-destructive"
+        >
+          {error}
+        </p>
+      ) : (
+        <p className="text-sm text-muted-foreground">
+          We’ll point you to the right inbox. Nothing is stored on this demo form.
+        </p>
+      )}
 
       <Button type="submit" size="lg" disabled={status === "loading"} className="h-11 px-5">
         {status === "loading" ? (

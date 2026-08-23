@@ -1,28 +1,24 @@
 "use client";
 
 import { useState } from "react";
-import { Menu } from "lucide-react";
+import { Menu, X } from "lucide-react";
 
 import { InstagramIcon } from "@/components/landing/instagram-icon";
-
-import { Button } from "@/components/ui/button";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
+import { Button, buttonVariants } from "@/components/ui/button";
 import { navLinks, site } from "@/lib/site";
+import { cn } from "@/lib/utils";
 
 export function SiteHeader() {
   const [mobileOpen, setMobileOpen] = useState(false);
 
+  function closeMenu() {
+    setMobileOpen(false);
+  }
+
   return (
     <header className="sticky top-0 z-40 border-b border-border/70 bg-background/80 backdrop-blur-md">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
-        <a href="#top" className="flex items-center gap-2.5">
+        <a href="#top" className="flex items-center gap-2.5" onClick={closeMenu}>
           <span className="flex size-8 items-center justify-center rounded-full bg-primary text-[0.65rem] font-medium tracking-wide text-primary-foreground">
             CF
           </span>
@@ -42,72 +38,69 @@ export function SiteHeader() {
         </nav>
 
         <div className="flex items-center gap-2">
-          <Button
-            variant="ghost"
-            size="icon"
-            nativeButton={false}
-            render={
-              <a
-                href={site.instagram.url}
-                target="_blank"
-                rel="noreferrer"
-                aria-label="Instagram"
-              />
-            }
-            className="hidden sm:inline-flex"
+          <a
+            href={site.instagram.url}
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Instagram"
+            className={cn(
+              buttonVariants({ variant: "ghost", size: "icon" }),
+              "hidden sm:inline-flex",
+            )}
           >
             <InstagramIcon className="size-4" />
-          </Button>
-          <Button
-            nativeButton={false}
-            render={<a href="#contact" />}
-            className="hidden h-9 px-3.5 sm:inline-flex"
+          </a>
+          <a
+            href="#contact"
+            className={cn(
+              buttonVariants({ variant: "default" }),
+              "hidden h-9 px-3.5 sm:inline-flex",
+            )}
           >
             Get in touch
-          </Button>
+          </a>
 
-          <Dialog open={mobileOpen} onOpenChange={setMobileOpen}>
-            <DialogTrigger
-              render={
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  className="md:hidden"
-                  aria-label="Open menu"
-                />
-              }
-            >
-              <Menu className="size-5" />
-            </DialogTrigger>
-            <DialogContent className="max-w-sm" showCloseButton>
-              <DialogHeader>
-                <DialogTitle>Menu</DialogTitle>
-                <DialogDescription>Jump to a section of the page.</DialogDescription>
-              </DialogHeader>
-              <nav className="flex flex-col gap-1">
-                {navLinks.map((link) => (
-                  <a
-                    key={link.href}
-                    href={link.href}
-                    onClick={() => setMobileOpen(false)}
-                    className="rounded-lg px-2 py-2.5 text-sm hover:bg-muted"
-                  >
-                    {link.label}
-                  </a>
-                ))}
-              </nav>
-              <Button
-                className="h-10 w-full"
-                nativeButton={false}
-                render={<a href="#contact" />}
-                onClick={() => setMobileOpen(false)}
-              >
-                Get in touch
-              </Button>
-            </DialogContent>
-          </Dialog>
+          <Button
+            type="button"
+            variant="ghost"
+            size="icon"
+            className="md:hidden"
+            aria-label={mobileOpen ? "Close menu" : "Open menu"}
+            aria-expanded={mobileOpen}
+            aria-controls="mobile-nav"
+            onClick={() => setMobileOpen((open) => !open)}
+          >
+            {mobileOpen ? <X className="size-5" /> : <Menu className="size-5" />}
+          </Button>
         </div>
       </div>
+
+      {mobileOpen ? (
+        <div
+          id="mobile-nav"
+          className="border-t border-border bg-background px-4 py-4 md:hidden"
+        >
+          <nav className="flex flex-col gap-1">
+            {navLinks.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                onClick={closeMenu}
+                className="rounded-lg px-2 py-2.5 text-sm hover:bg-muted"
+              >
+                {link.label}
+              </a>
+            ))}
+          </nav>
+          <a
+            href="#contact"
+            onClick={closeMenu}
+            className={cn(buttonVariants({ variant: "default" }), "mt-3 h-10 w-full")}
+          >
+            Get in touch
+          </a>
+        </div>
+      ) : null}
     </header>
   );
 }
