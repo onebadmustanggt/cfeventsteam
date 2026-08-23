@@ -12,8 +12,8 @@ export function Services() {
             From concept through event day.
           </h2>
           <p className="mt-4 text-muted-foreground">
-            Volunteer-led planning, vendor coordination, promotion, and on-site
-            management for community events across the CSRA.
+            Planning, vendor coordination, promotion, and on-site management
+            for community events across the CSRA.
           </p>
         </div>
         <ul className="mt-12 grid gap-4 sm:grid-cols-2">
