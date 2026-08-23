@@ -20,7 +20,7 @@ export function SiteHeader() {
     <header className="sticky top-0 z-50 border-b border-border/70 bg-background/95 backdrop-blur-md">
       <div className="mx-auto flex min-h-16 max-w-6xl items-center justify-between gap-4 px-4 py-2 sm:px-6">
         <a href="#top" className="min-w-0" onClick={closeMenu}>
-          <BrandMark compact />
+          <BrandMark />
         </a>
 
         <nav className="hidden items-center gap-7 text-sm text-muted-foreground md:flex">
