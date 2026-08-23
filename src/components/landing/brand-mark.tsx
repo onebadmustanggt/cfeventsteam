@@ -9,7 +9,7 @@ export function BrandMark({ className }: { className?: string }) {
       overflow="visible"
       role="img"
       aria-label={site.name}
-      className={cn("h-20 w-20 shrink-0 text-foreground sm:h-24 sm:w-24", className)}
+      className={cn("h-24 w-24 shrink-0 text-foreground sm:h-28 sm:w-28", className)}
     >
       <title>{site.name}</title>
       <path
@@ -25,11 +25,11 @@ export function BrandMark({ className }: { className?: string }) {
         strokeLinecap="round"
       />
       <text
-        x="114"
+        x="70"
         y="58"
         fill="currentColor"
         textAnchor="middle"
-        transform="rotate(-18 114 58)"
+        transform="rotate(-18 70 58)"
         style={{
           fontFamily: "var(--font-great-vibes), cursive",
           fontSize: 36,
