@@ -85,7 +85,7 @@ export const events = [
     dateLabel: "Saturday, October 10, 2026",
     timeLabel: "11:00 AM – 4:00 PM",
     place: "5220 Canterbury Farms Parkway, Grovetown GA",
-    status: "Vendor applications open",
+    status: "Vendor applications closed",
     blurb:
       "Celebrate the season with a festive fall market filled with local vendors, handcrafted goods, delicious treats, and plenty of autumn charm. Spend the day shopping unique finds, enjoying seasonal flavors, and making memories with family and friends. It’s the perfect way to welcome fall and support local businesses in a fun, community-focused atmosphere.",
     details: [
@@ -95,8 +95,8 @@ export const events = [
       "Opportunities to discover new local makers and creators",
     ],
     cta: {
-      label: "Apply to vend",
-      href: "mailto:cf.vendorevents@gmail.com?subject=Honey%20and%20Harvest%20Fall%20Festival",
+      label: "Get in touch",
+      href: "#contact",
     },
   },
   {
