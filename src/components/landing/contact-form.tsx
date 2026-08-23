@@ -116,14 +116,14 @@ export function ContactForm() {
 
       if (!response.ok) {
         setStatus("error");
-        setError("Something didn’t send. Email us directly instead.");
+        setError(`Something didn’t send. Email ${site.formEmail} instead.`);
         return;
       }
 
       setStatus("success");
     } catch {
       setStatus("error");
-      setError("We couldn’t reach the form just now. Email us directly instead.");
+      setError(`We couldn’t reach the form just now. Email ${site.formEmail} instead.`);
     }
   }
 
@@ -136,11 +136,11 @@ export function ContactForm() {
         <CheckCircle2 className="mx-auto size-8 text-primary" />
         <p className="font-heading mt-3 text-2xl">We have your note.</p>
         <p className="mt-2 text-sm text-muted-foreground">
-          This page does not store messages yet. For a sure reply, write{" "}
-          <a className="underline underline-offset-4" href={`mailto:${site.email}`}>
-            {site.email}
-          </a>{" "}
-          or message {site.facebook.name} on Facebook.
+          Your note was sent to{" "}
+          <a className="underline underline-offset-4" href={`mailto:${site.formEmail}`}>
+            {site.formEmail}
+          </a>
+          . We will reply to the email you left on the form.
         </p>
       </div>
     );
