@@ -26,6 +26,8 @@ export const site = {
   },
 };
 
+export const gallery: { src: string; alt: string }[] = [];
+
 export const navLinks = [
   { href: "#events", label: "Events" },
   { href: "#about", label: "About" },
