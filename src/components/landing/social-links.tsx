@@ -15,11 +15,9 @@ const socials = [
 export function SocialLinks({
   className,
   iconClassName,
-  linkClassName,
 }: {
   className?: string;
   iconClassName?: string;
-  linkClassName?: string;
 }) {
   return (
     <div className={cn("flex items-center gap-1", className)}>
@@ -30,10 +28,7 @@ export function SocialLinks({
           target="_blank"
           rel="noreferrer"
           aria-label={name}
-          className={cn(
-            "inline-flex size-9 items-center justify-center rounded-full text-muted-foreground transition-colors hover:bg-muted hover:text-foreground",
-            linkClassName,
-          )}
+          className="inline-flex size-9 items-center justify-center rounded-full text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
         >
           <Icon className={cn("size-5", iconClassName)} />
         </a>
