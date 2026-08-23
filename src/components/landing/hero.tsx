@@ -9,7 +9,7 @@ export function Hero() {
         aria-hidden
         className="pointer-events-none absolute -right-24 -top-16 size-[28rem] rounded-full bg-[radial-gradient(circle,oklch(0.78_0.1_70_/_0.4),transparent_68%)]"
       />
-      <div className="relative mx-auto grid max-w-6xl items-center gap-10 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:gap-14">
+      <div className="relative mx-auto grid max-w-6xl items-start gap-10 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:gap-14">
         <div>
           <p className="text-xs font-medium tracking-[0.2em] text-primary">
             Grovetown · Augusta · The CSRA
