@@ -42,15 +42,7 @@ export const aboutCopy = {
     "We handle everything from event planning and vendor coordination to promotion, setup, communication, and day-of-event operations. We are proud to support small businesses throughout the CSRA while creating opportunities for our community to gather, connect, and make memories.",
     "At the heart of everything we do is community, connection, collaboration, and supporting local.",
   ],
-  closing: "The CF Events Team: Bringing the community together, one event at a time.",
 };
-
-export const heartValues = [
-  "Community",
-  "Connection",
-  "Collaboration",
-  "Supporting local",
-];
 
 export const awards = {
   intro:

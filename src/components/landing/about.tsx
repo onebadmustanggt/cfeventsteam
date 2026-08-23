@@ -1,5 +1,5 @@
 import { Badge } from "@/components/ui/badge";
-import { aboutCopy, awards, heartValues } from "@/lib/site";
+import { aboutCopy, awards } from "@/lib/site";
 
 export function About() {
   return (
@@ -16,19 +16,6 @@ export function About() {
             <p key={paragraph}>{paragraph}</p>
           ))}
         </div>
-        <p className="font-heading mt-8 max-w-3xl text-2xl italic text-primary">
-          {aboutCopy.closing}
-        </p>
-        <ul className="mt-8 flex flex-wrap gap-2">
-          {heartValues.map((value) => (
-            <li
-              key={value}
-              className="rounded-full border border-primary/20 bg-card px-3 py-1.5 text-sm text-primary"
-            >
-              {value}
-            </li>
-          ))}
-        </ul>
 
         <div className="mt-16 max-w-3xl">
           <p className="text-xs font-medium tracking-[0.18em] text-primary uppercase">
