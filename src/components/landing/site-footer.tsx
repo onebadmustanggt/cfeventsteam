@@ -69,9 +69,7 @@ export function SiteFooter() {
       </div>
       <Separator className="mx-auto mt-8 max-w-6xl" />
       <p className="mx-auto mt-6 max-w-6xl text-xs text-muted-foreground">
-        © {new Date().getFullYear()} {site.name}. {site.established}. Messenger:{" "}
-        {site.facebook.name}. Follow {site.instagram.handle} for photos and
-        last-minute updates.
+        © {new Date().getFullYear()} {site.name}. {site.established}.
       </p>
     </footer>
   );
