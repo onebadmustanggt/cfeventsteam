@@ -22,7 +22,7 @@ export function Events() {
             Upcoming Events
           </h2>
         </div>
-        <div className="mt-10 grid gap-4 lg:grid-cols-3">
+        <div className="mt-10 grid gap-4 md:grid-cols-2">
           {events.map((event) => (
             <Card key={event.slug} className="h-full bg-card/90">
               <CardHeader>

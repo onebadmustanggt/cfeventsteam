@@ -120,27 +120,6 @@ export const events = [
       href: "mailto:cf.vendorevents@gmail.com?subject=Bloom%20and%20Buzz%20Spring%20Market",
     },
   },
-  {
-    slug: "summer-collective",
-    title: "The Summer Collective",
-    subtitle: "A curated market & community gathering",
-    dateLabel: "Saturday, July 11, 2026",
-    timeLabel: "2:00 PM – 5:00 PM",
-    place: "720 Collective Studio | Spa, 720 Broad Street",
-    status: "Shop local · Downtown Augusta",
-    blurb:
-      "An intentional afternoon of makers, small businesses, and local creatives. Shop, sip, browse, and spend a few unhurried hours supporting the CSRA.",
-    details: [
-      "Beauty, wellness, handmade goods, and sweet treats",
-      "Returning favorites plus first-time vendors",
-      "Cozy indoor setting — not a large outdoor market",
-      "Covered by The Augusta Press community calendar",
-    ],
-    cta: {
-      label: "Ask about a table",
-      href: "mailto:cf.vendorevents@gmail.com?subject=The%20Summer%20Collective",
-    },
-  },
 ];
 
 export const services = [
