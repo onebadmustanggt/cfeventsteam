@@ -72,8 +72,18 @@ export function About() {
               {awards.bestOfGeorgia.title}
             </p>
             <p className="mt-3 text-sm text-primary-foreground/80">
-              Nominated statewide. If you love what we do in Grovetown and across
-              the CSRA, add your vote.
+              {awards.bestOfGeorgia.intro}
+            </p>
+            <p className="mt-5 text-xs font-medium tracking-[0.16em] uppercase text-primary-foreground/70">
+              {awards.bestOfGeorgia.howToTitle}
+            </p>
+            <ol className="mt-2 list-decimal space-y-1.5 pl-4 text-sm text-primary-foreground/90">
+              {awards.bestOfGeorgia.steps.map((step) => (
+                <li key={step}>{step}</li>
+              ))}
+            </ol>
+            <p className="mt-4 text-sm text-primary-foreground/80">
+              {awards.bestOfGeorgia.thanks}
             </p>
             <a
               href={awards.bestOfGeorgia.href}

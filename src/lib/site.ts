@@ -64,8 +64,17 @@ export const awards = {
   bestOfGeorgia: {
     title: "Best of Georgia nominee",
     source: "Georgia Business Journal",
+    intro: "If you love what we do in Grovetown and across the CSRA, add your vote.",
+    howToTitle: "How to Vote",
+    steps: [
+      "Click Vote at BestofGeorgia.com below.",
+      "Scroll to Event Planners under Weddings & Events.",
+      "Click View All Nominees.",
+      "Find The CF Events Team in the first column and cast your vote!",
+    ],
+    thanks: "Thank you for supporting local!",
     cta: "Vote at BestofGeorgia.com",
-    href: "https://bestofgeorgia.com",
+    href: "https://gbj.com/best-of/vote/weddings-events",
   },
 };
 
