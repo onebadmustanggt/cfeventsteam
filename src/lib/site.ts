@@ -43,7 +43,7 @@ export const navLinks = [
   { href: "#events", label: "Events" },
   { href: "#about", label: "About" },
   { href: "#services", label: "Services" },
-  { href: `mailto:${site.email}`, label: "Contact" },
+  { href: "#contact", label: "Contact" },
 ] as const;
 
 export const aboutCopy = {
@@ -109,7 +109,7 @@ export const events = [
     ],
     cta: {
       label: "Get in touch",
-      href: `mailto:${site.email}`,
+      href: "#contact",
     },
   },
   {
@@ -130,7 +130,7 @@ export const events = [
     ],
     cta: {
       label: "Apply to vend",
-      href: `mailto:${site.email}`,
+      href: "#contact",
     },
   },
 ];
@@ -185,7 +185,7 @@ export const faqs = [
   },
   {
     q: "How can I become a vendor at one of your events?",
-    a: "Vendor applications are sent directly by email. If you’re interested in participating in one of our events, reach out to us or join our vendor email list to receive application opportunities as they become available.",
+    a: `Use the contact form on this page. Tell us you’re a vendor and which event you want to join. You can also email ${site.email} if you would rather write us directly.`,
   },
   {
     q: "Are your markets indoors or outdoors?",

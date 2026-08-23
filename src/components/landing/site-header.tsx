@@ -7,7 +7,7 @@ import { BrandMark } from "@/components/landing/brand-mark";
 import { SiteTicker } from "@/components/landing/site-ticker";
 import { SocialLinks } from "@/components/landing/social-links";
 import { buttonVariants } from "@/components/ui/button";
-import { navLinks, site } from "@/lib/site";
+import { navLinks } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
 export function SiteHeader() {
@@ -41,7 +41,7 @@ export function SiteHeader() {
         <div className="flex items-center gap-1 sm:gap-2">
           <SocialLinks className="hidden sm:flex" />
           <a
-            href={`mailto:${site.email}`}
+            href="#contact"
             className={cn(
               buttonVariants({ variant: "default" }),
               "hidden h-9 px-3.5 sm:inline-flex",
@@ -87,7 +87,7 @@ export function SiteHeader() {
           </nav>
           <SocialLinks className="mt-3" />
           <a
-            href={`mailto:${site.email}`}
+            href="#contact"
             onClick={closeMenu}
             className={cn(
               buttonVariants({ variant: "default" }),

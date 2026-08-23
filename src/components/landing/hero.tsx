@@ -30,7 +30,7 @@ export function Hero() {
               variant="outline"
               className="h-11 px-5"
               nativeButton={false}
-              render={<a href={`mailto:${site.email}`} />}
+              render={<a href="#contact" />}
             >
               Become a vendor
             </Button>
