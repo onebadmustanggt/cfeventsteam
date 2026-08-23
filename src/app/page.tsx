@@ -7,6 +7,8 @@ import { Services } from "@/components/landing/services";
 import { SiteFooter } from "@/components/landing/site-footer";
 import { SiteHeader } from "@/components/landing/site-header";
 
+export const revalidate = 60;
+
 export default function Home() {
   return (
     <div id="top" className="flex min-h-full flex-1 flex-col">
