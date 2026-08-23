@@ -53,7 +53,7 @@ async function deliverMessage({
   ].join("\n");
 
   const response = await fetch(
-    `https://formsubmit.co/ajax/${encodeURIComponent(site.formEmail)}`,
+    `https://formsubmit.co/ajax/${encodeURIComponent(site.email)}`,
     {
       method: "POST",
       headers: {

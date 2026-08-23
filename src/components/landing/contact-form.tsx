@@ -116,14 +116,14 @@ export function ContactForm() {
 
       if (!response.ok) {
         setStatus("error");
-        setError(`Something didn’t send. Email ${site.formEmail} instead.`);
+        setError(`Something didn’t send. Email ${site.email} instead.`);
         return;
       }
 
       setStatus("success");
     } catch {
       setStatus("error");
-      setError(`We couldn’t reach the form just now. Email ${site.formEmail} instead.`);
+      setError(`We couldn’t reach the form just now. Email ${site.email} instead.`);
     }
   }
 
@@ -137,8 +137,8 @@ export function ContactForm() {
         <p className="font-heading mt-3 text-2xl">We have your note.</p>
         <p className="mt-2 text-sm text-muted-foreground">
           Your note was sent to{" "}
-          <a className="underline underline-offset-4" href={`mailto:${site.formEmail}`}>
-            {site.formEmail}
+          <a className="underline underline-offset-4" href={`mailto:${site.email}`}>
+            {site.email}
           </a>
           . We will reply to the email you left on the form.
         </p>

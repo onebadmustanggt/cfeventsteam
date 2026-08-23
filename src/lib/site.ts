@@ -6,7 +6,6 @@ export const site = {
   tagline: "Bringing the community together, one event at a time.",
   bio: "The CF Events Team, bringing together vendor markets, pop-ups, food trucks, local businesses & community connections across the CSRA. Fun with a purpose.",
   email: "cf.vendorevents@gmail.com",
-  formEmail: "cf.eventsteam@gmail.com",
   location: "Grovetown, GA 30813",
   instagram: {
     handle: "@cf.events.team",
