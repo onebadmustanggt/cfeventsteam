@@ -4,44 +4,57 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { site } from "@/lib/site";
 
 const faqs = [
   {
-    q: "Is this a big outdoor vendor market?",
-    a: "Usually no. The Collectives at 720 Broad Street are small indoor markets — a handful of tables, curated on purpose. Some Canterbury Farms Vendor Events happen outdoors in the Grovetown area; those are listed separately on Instagram.",
+    q: "What types of events does CF Events Team host?",
+    a: "We create and manage community-focused events throughout the CSRA, including seasonal markets, vendor events, and other special events designed to bring local businesses and the community together.",
   },
   {
-    q: "How do I get a table?",
-    a: `Email ${site.email} with the event name in the subject line, what you sell, and a link to your shop or Instagram. Spring Collective has been $25 for one indoor 6 ft table, with only 4–6 vendors selected.`,
+    q: "How can I become a vendor at one of your events?",
+    a: "Vendor applications are available directly through our website. Visit the event you are interested in, review the vendor information, and complete the online application to be considered.",
   },
   {
-    q: "Where do I buy tickets for Secret Garden?",
-    a: "Tickets are $10, 40 spots, on Vagaro. The link is on this page under The Secret Garden Gathering. Dress in whimsical garden attire; children over 10 are welcome.",
+    q: "Are your markets indoors or outdoors?",
+    a: "It depends on the event. Some of our markets are completely indoors, while others offer a combination of indoor and outdoor shopping. Each event page will provide specific details about the location and setup.",
   },
   {
-    q: "Where should I follow for last-minute changes?",
-    a: `Instagram ${site.instagram.handle} is the live photo channel. Facebook and Messenger: ${site.facebook.name}. TikTok: ${site.tiktok.handle}. Weather, lineup, and ticket updates go there first.`,
+    q: "Do your events have food and entertainment?",
+    a: "Many of our events feature food vendors, live music, and other entertainment in addition to shopping. Check the individual event page to see what is planned for that event.",
   },
   {
-    q: "Are you the Florida or Minnesota Canterbury Farms?",
-    a: "No. We are The CF Events Team in the CSRA — Augusta and Grovetown, Georgia. Other farms with similar names are not us.",
+    q: "How do I know if there is an admission fee?",
+    a: "The CF Events Team never charges an admission fee for the events we host. However, some events we participate in with community partners may have their own admission or ticket requirements. Any applicable fees will be clearly listed on the event page so you know what to expect before you arrive.",
+  },
+  {
+    q: "Can my business sponsor one of your events?",
+    a: "Absolutely! We offer sponsorship opportunities that give local businesses a chance to connect with our attendees and increase their visibility in the community. Contact us to learn more about available sponsorship options.",
+  },
+  {
+    q: "Where can I find upcoming event dates and locations?",
+    a: "Our upcoming events are listed right here on our website with dates, locations, times, and event details. You can also follow CF Events Team on social media for the most current announcements and updates.",
+  },
+  {
+    q: "Who should I contact if I have a question about an event?",
+    a: "Use the contact form on our website and let us know which event you are asking about. Our team will get back to you as soon as possible.",
+  },
+  {
+    q: "Do you collaborate with other businesses or organizations?",
+    a: "Yes! We love working with local businesses, organizations, community groups, and other event professionals. If you have an idea for a collaboration, partnership, or special event, reach out through our contact page and tell us what you have in mind.",
   },
 ];
 
 export function Faq() {
   return (
     <section id="faq" className="px-4 pb-16 sm:px-6 sm:pb-20">
-      <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)]">
-        <div>
-          <p className="text-xs font-medium tracking-[0.18em] text-primary uppercase">
-            Questions
-          </p>
-          <h2 className="font-heading mt-3 text-3xl tracking-tight sm:text-4xl">
-            Before you drive downtown.
-          </h2>
-        </div>
-        <Accordion multiple={false} className="border-t">
+      <div className="mx-auto max-w-6xl">
+        <p className="text-xs font-medium tracking-[0.18em] text-primary uppercase">
+          FAQ
+        </p>
+        <h2 className="font-heading mt-3 max-w-2xl text-3xl tracking-tight sm:text-4xl">
+          Frequently asked questions
+        </h2>
+        <Accordion multiple={false} className="mt-10 border-t">
           {faqs.map((item, index) => (
             <AccordionItem key={item.q} value={`faq-${index}`}>
               <AccordionTrigger className="py-4 text-base font-medium hover:no-underline">
