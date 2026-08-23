@@ -19,7 +19,7 @@ export function BrandMark({
             The
           </span>
         ) : null}
-        <span className="font-script text-[1.35rem] leading-none text-primary">
+        <span className="font-heading text-xl leading-none tracking-tight text-primary">
           CF Events Team
         </span>
         <span className="mt-1 text-[0.6rem] tracking-[0.16em] text-muted-foreground uppercase">
