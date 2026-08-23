@@ -26,7 +26,7 @@ export function BrandMark({ className }: { className?: string }) {
       />
       <text
         x="100"
-        y="81"
+        y="74"
         fill="currentColor"
         textAnchor="middle"
         style={{
