@@ -10,17 +10,56 @@ import { cn } from "@/lib/utils";
 
 type Status = "idle" | "loading" | "success" | "error";
 
-const roles = [
-  { value: "guest", label: "I want to attend" },
-  { value: "vendor", label: "I want a table" },
-  { value: "partner", label: "Venue or partnership" },
+const MESSAGE_MAX = 500;
+
+const identities = [
+  { value: "vendor", label: "Vendor" },
+  { value: "creator", label: "Content Creator" },
 ] as const;
+
+const reasons = [
+  { value: "apply-vendor", label: "I'd like to apply to be a vendor" },
+  { value: "collaborate", label: "I'd like to Collaborate" },
+] as const;
+
+type Identity = (typeof identities)[number]["value"];
+type Reason = (typeof reasons)[number]["value"];
 
 const fieldClassName =
   "h-11 w-full rounded-lg border border-input bg-card px-3 text-base outline-none transition-colors placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 disabled:opacity-50 md:text-sm aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20";
 
+function Chip({
+  selected,
+  disabled,
+  onClick,
+  children,
+}: {
+  selected: boolean;
+  disabled: boolean;
+  onClick: () => void;
+  children: string;
+}) {
+  return (
+    <button
+      type="button"
+      disabled={disabled}
+      aria-pressed={selected}
+      onClick={onClick}
+      className={
+        selected
+          ? "rounded-full bg-primary px-3 py-1.5 text-sm text-primary-foreground"
+          : "rounded-full border border-border bg-card px-3 py-1.5 text-sm hover:bg-muted"
+      }
+    >
+      {children}
+    </button>
+  );
+}
+
 export function ContactForm() {
-  const [role, setRole] = useState<(typeof roles)[number]["value"]>("guest");
+  const [identity, setIdentity] = useState<Identity | "">("");
+  const [reason, setReason] = useState<Reason | "">("");
+  const [message, setMessage] = useState("");
   const [status, setStatus] = useState<Status>("idle");
   const [error, setError] = useState("");
 
@@ -30,7 +69,7 @@ export function ContactForm() {
     const data = new FormData(event.currentTarget);
     const name = String(data.get("name") ?? "").trim();
     const email = String(data.get("email") ?? "").trim();
-    const message = String(data.get("message") ?? "").trim();
+    const note = message.trim();
 
     if (!name) {
       setStatus("error");
@@ -42,9 +81,24 @@ export function ContactForm() {
       setError("Add an email so we can reply.");
       return;
     }
-    if (!message) {
+    if (!identity) {
+      setStatus("error");
+      setError("Let us know if you are a vendor or a content creator.");
+      return;
+    }
+    if (!reason) {
+      setStatus("error");
+      setError("Tell us if you want to vend or collaborate.");
+      return;
+    }
+    if (!note) {
       setStatus("error");
       setError("A short note helps — which event, and what you need.");
+      return;
+    }
+    if (note.length > MESSAGE_MAX) {
+      setStatus("error");
+      setError(`Keep your message to ${MESSAGE_MAX} characters.`);
       return;
     }
 
@@ -55,7 +109,7 @@ export function ContactForm() {
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, role, message }),
+        body: JSON.stringify({ name, email, identity, reason, message: note }),
       });
 
       if (!response.ok) {
@@ -90,22 +144,18 @@ export function ContactForm() {
     );
   }
 
-  const invalid = status === "error";
+  const loading = status === "loading";
 
   return (
     <form onSubmit={onSubmit} className="space-y-4" noValidate>
-      {invalid ? (
+      {status === "error" ? (
         <p
           role="alert"
           className="rounded-lg border border-destructive/30 bg-destructive/10 px-3 py-2 text-sm text-destructive"
         >
           {error}
         </p>
-      ) : (
-        <p className="text-sm text-muted-foreground">
-          We’ll point you to the right inbox. Nothing is stored on this demo form.
-        </p>
-      )}
+      ) : null}
 
       <div className="grid gap-4 sm:grid-cols-2">
         <div className="space-y-2">
@@ -114,7 +164,7 @@ export function ContactForm() {
             id="contact-name"
             name="name"
             autoComplete="name"
-            disabled={status === "loading"}
+            disabled={loading}
             placeholder="Your name"
             className={fieldClassName}
           />
@@ -126,7 +176,7 @@ export function ContactForm() {
             type="email"
             name="email"
             autoComplete="email"
-            disabled={status === "loading"}
+            disabled={loading}
             placeholder="you@email.com"
             className={fieldClassName}
           />
@@ -134,22 +184,33 @@ export function ContactForm() {
       </div>
 
       <fieldset className="space-y-2">
-        <legend className="text-sm font-medium">I’m writing because</legend>
+        <legend className="text-sm font-medium">I’m a</legend>
         <div className="flex flex-wrap gap-2">
-          {roles.map((item) => (
-            <button
+          {identities.map((item) => (
+            <Chip
               key={item.value}
-              type="button"
-              disabled={status === "loading"}
-              onClick={() => setRole(item.value)}
-              className={
-                role === item.value
-                  ? "rounded-full bg-primary px-3 py-1.5 text-sm text-primary-foreground"
-                  : "rounded-full border border-border bg-card px-3 py-1.5 text-sm hover:bg-muted"
-              }
+              selected={identity === item.value}
+              disabled={loading}
+              onClick={() => setIdentity(item.value)}
             >
               {item.label}
-            </button>
+            </Chip>
+          ))}
+        </div>
+      </fieldset>
+
+      <fieldset className="space-y-2">
+        <legend className="text-sm font-medium">I’m writing because</legend>
+        <div className="flex flex-wrap gap-2">
+          {reasons.map((item) => (
+            <Chip
+              key={item.value}
+              selected={reason === item.value}
+              disabled={loading}
+              onClick={() => setReason(item.value)}
+            >
+              {item.label}
+            </Chip>
           ))}
         </div>
       </fieldset>
@@ -159,18 +220,24 @@ export function ContactForm() {
         <textarea
           id="contact-message"
           name="message"
-          disabled={status === "loading"}
-          placeholder="Which event, what you sell, or how many tickets you need."
+          value={message}
+          maxLength={MESSAGE_MAX}
+          disabled={loading}
+          placeholder="Which event, what you sell, or how we can work together."
+          onChange={(event) => setMessage(event.target.value.slice(0, MESSAGE_MAX))}
           className={cn(fieldClassName, "h-auto min-h-32 py-2")}
         />
+        <p className="text-right text-xs text-muted-foreground">
+          {message.length}/{MESSAGE_MAX}
+        </p>
       </div>
 
       <button
         type="submit"
-        disabled={status === "loading"}
+        disabled={loading}
         className={cn(buttonVariants({ variant: "default", size: "lg" }), "h-11 px-5")}
       >
-        {status === "loading" ? (
+        {loading ? (
           <>
             <Loader2 className="size-4 animate-spin" />
             Sending

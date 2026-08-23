@@ -1,20 +1,25 @@
 import { NextResponse } from "next/server";
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const MESSAGE_MAX = 500;
+const IDENTITIES = new Set(["vendor", "creator"]);
+const REASONS = new Set(["apply-vendor", "collaborate"]);
 
 export async function POST(request: Request) {
   try {
     const body = (await request.json()) as {
       name?: unknown;
       email?: unknown;
-      role?: unknown;
+      identity?: unknown;
+      reason?: unknown;
       message?: unknown;
     };
 
     const name = String(body.name ?? "").trim();
     const email = String(body.email ?? "").trim().toLowerCase();
     const message = String(body.message ?? "").trim();
-    const role = String(body.role ?? "guest");
+    const identity = String(body.identity ?? "");
+    const reason = String(body.reason ?? "");
 
     if (!name) {
       return NextResponse.json(
@@ -34,16 +39,34 @@ export async function POST(request: Request) {
         { status: 400 },
       );
     }
+    if (!IDENTITIES.has(identity)) {
+      return NextResponse.json(
+        { error: "Let us know if you are a vendor or a content creator." },
+        { status: 400 },
+      );
+    }
+    if (!REASONS.has(reason)) {
+      return NextResponse.json(
+        { error: "Tell us if you want to vend or collaborate." },
+        { status: 400 },
+      );
+    }
     if (!message) {
       return NextResponse.json(
         { error: "A short note helps — which event, and what you need." },
         { status: 400 },
       );
     }
+    if (message.length > MESSAGE_MAX) {
+      return NextResponse.json(
+        { error: `Keep your message to ${MESSAGE_MAX} characters.` },
+        { status: 400 },
+      );
+    }
 
     await new Promise((resolve) => setTimeout(resolve, 500));
 
-    return NextResponse.json({ ok: true, role });
+    return NextResponse.json({ ok: true, identity, reason });
   } catch {
     return NextResponse.json(
       { error: "Something didn’t send. Try again or email us." },
