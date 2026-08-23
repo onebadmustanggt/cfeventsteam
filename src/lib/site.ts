@@ -45,7 +45,7 @@ export const aboutCopy = {
 
 export const awards = {
   intro:
-    "Our neighbors keep voting us in! CommunityVotes Augusta’s 2026 campaign received thousands of nominations, recognizing 2,574 local businesses and individuals, with CF Events Team earning awards across eight categories. We were also nominated for Best of Georgia by the Georgia Business Journal in 2025 and are proud to be nominated again for 2026.",
+    "Our neighbors keep voting us in! CommunityVotes Augusta’s 2026 campaign received thousands of nominations, recognizing 2,574 local businesses and individuals, with The CF Events Team earning awards across eight categories. We were also nominated for Best of Georgia by the Georgia Business Journal in 2025 and are proud to be nominated again for 2026.",
   communityVotes: {
     source: "CommunityVotes Augusta",
     year: "2026",
