@@ -18,47 +18,62 @@ npm run dev
 
 Open [http://127.0.0.1:43147](http://127.0.0.1:43147).
 
-## Go live (GitHub → Vercel → GoDaddy)
+To preview the Cloudflare Workers build on your machine:
+
+```bash
+npm run preview
+```
+
+## Go live (GitHub → Cloudflare)
+
+Hosting is **Cloudflare Workers** (OpenNext). The domain stays registered at GoDaddy; DNS moves to Cloudflare.
 
 GitHub repo: [onebadmustanggt/cfeventsteam](https://github.com/onebadmustanggt/cfeventsteam)
 
 ### 1. Put this code on GitHub
 
-From this project folder, with GitHub CLI logged in:
+From this project folder, with GitHub logged in:
 
 ```bash
 git remote add github https://github.com/onebadmustanggt/cfeventsteam.git
 git push -u github main
 ```
 
-If `github` is already added, just run `git push github main`.
+If `github` is already added, run `git push github main`.
 
-### 2. Deploy on Vercel (free Hobby plan is enough)
+### 2. Add cfeventsteam.com to Cloudflare
 
-1. Open [vercel.com/new](https://vercel.com/new) and sign in with GitHub.
-2. Import **onebadmustanggt/cfeventsteam**.
-3. Leave the defaults (Next.js is detected). Click **Deploy**.
-4. When the build finishes, open the `*.vercel.app` URL and confirm the site.
+1. Create a free account at [dash.cloudflare.com](https://dash.cloudflare.com/sign-up).
+2. **Add a domain** → enter `cfeventsteam.com`.
+3. Choose the **Free** plan.
+4. Cloudflare will show two nameservers (they look like `ada.ns.cloudflare.com` and `bob.ns.cloudflare.com` — yours will differ).
+5. In **GoDaddy** → **cfeventsteam.com** → **DNS** / **Nameservers** → change from GoDaddy (`ns37.domaincontrol.com` / `ns38.domaincontrol.com`) to the two Cloudflare nameservers.
+6. Turn **off** GoDaddy forwarding / parking if it is still on. After nameservers switch, GoDaddy DNS records no longer apply.
+7. Wait until Cloudflare shows the zone as **Active** (often 15–30 minutes, sometimes longer).
 
-### 3. Point cfeventsteam.com at Vercel (GoDaddy)
+Keep the Google verification TXT and email SPF records that Cloudflare copied over.
 
-The domain currently uses GoDaddy nameservers (`ns37.domaincontrol.com`) and forwarding IPs. Those forwarding records must come off before Vercel can serve the site.
+### 3. Connect the GitHub repo to a Worker
 
-1. In Vercel: Project → **Settings** → **Domains** → add `cfeventsteam.com` and `www.cfeventsteam.com`.
-2. Copy the **exact** records Vercel shows (do not guess). Typical values:
-   - **A** record, name `@`, value `76.76.21.21` (or the IP on the domain card)
-   - **CNAME** record, name `www`, value from the domain card (often `cname.vercel-dns.com` or a project-specific `*.vercel-dns-*.com`)
-3. In GoDaddy → **cfeventsteam.com** → **DNS**:
-   - Turn **off** forwarding / parking if it is on.
-   - Delete the existing **A** records on `@` that point at `13.248.243.5` and `76.223.105.230`.
-   - Add the Vercel **A** and **www CNAME** records.
-   - Keep the Google verification **TXT** and email **SPF** records.
-4. Wait for Vercel to show the domain as valid (often a few minutes; SSL is automatic).
+1. In Cloudflare: **Workers & Pages** → **Create** → **Import a repository**.
+2. Sign in with GitHub and select **onebadmustanggt/cfeventsteam**, branch `main`.
+3. Set:
+   - **Build command:** `npx opennextjs-cloudflare build`
+   - **Deploy command:** `npx opennextjs-cloudflare deploy`
+4. Save and deploy. When it finishes you get a `*.workers.dev` URL — open that first and confirm the site.
 
-### 4. Activate the contact form
+### 4. Attach the real domain
+
+1. Open the `cfeventsteam` Worker → **Settings** → **Domains & Routes**.
+2. Add custom domains `cfeventsteam.com` and `www.cfeventsteam.com`.
+3. Cloudflare will create the DNS records. SSL is automatic.
+
+If the apex still shows GoDaddy’s old parking IPs (`13.248.243.5` / `76.223.105.230`), delete those A records in the Cloudflare DNS tab so only the Worker records remain.
+
+### 5. Activate the contact form
 
 The first live submission sends an activation email to `cf.vendorevents@gmail.com` from FormSubmit. Open that inbox (and spam) and click **Activate**. After that, vendor / creator / sponsor messages go to the same Gmail.
 
 ## Stack
 
-Next.js, TypeScript, Tailwind CSS, and shadcn/ui.
+Next.js, TypeScript, Tailwind CSS, shadcn/ui, and OpenNext on Cloudflare Workers.
