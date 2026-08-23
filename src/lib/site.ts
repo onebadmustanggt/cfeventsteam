@@ -79,24 +79,24 @@ export const awards = {
 
 export const events = [
   {
-    slug: "spring-collective",
-    title: "The Spring Collective",
-    subtitle: "A curated wellness & self-care market",
-    dateLabel: "Saturday, May 9, 2026",
-    timeLabel: "1:00 PM – 4:00 PM",
-    place: "720 Broad Street, Augusta, GA",
+    slug: "honey-and-harvest",
+    title: "Honey and Harvest Fall Festival",
+    subtitle: "A curated market and Fall Festival",
+    dateLabel: "Saturday, October 10, 2026",
+    timeLabel: "11:00 AM – 4:00 PM",
+    place: "5220 Canterbury Farms Parkway, Grovetown GA",
     status: "Vendor applications open",
     blurb:
-      "A small indoor market focused on wellness, self-care, beauty, and meaningful small businesses. Not a typical crowded market — 4 to 6 vendors, chosen so the room stays personal.",
+      "Celebrate the season with a festive fall market filled with local vendors, handcrafted goods, delicious treats, and plenty of autumn charm. Spend the day shopping unique finds, enjoying seasonal flavors, and making memories with family and friends. It’s the perfect way to welcome fall and support local businesses in a fun, community-focused atmosphere.",
     details: [
-      "Holistic health, coaching, skincare, and nutrition",
-      "Jewelry, accessories, and healthy treats",
-      "Indoor 6 ft table · $25 vendor fee",
-      "A quiet pre-Mother’s Day afternoon",
+      "Outdoor shopping in a relaxed fall setting",
+      "One-of-a-kind gifts, décor, and specialty items",
+      "A great weekend outing for all ages",
+      "Opportunities to discover new local makers and creators",
     ],
     cta: {
       label: "Apply to vend",
-      href: "mailto:cf.vendorevents@gmail.com?subject=The%20Spring%20Collective",
+      href: "mailto:cf.vendorevents@gmail.com?subject=Honey%20and%20Harvest%20Fall%20Festival",
     },
   },
   {

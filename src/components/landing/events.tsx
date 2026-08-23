@@ -19,12 +19,8 @@ export function Events() {
             On the calendar
           </p>
           <h2 className="font-heading mt-3 text-3xl tracking-tight sm:text-4xl">
-            Upcoming gatherings
+            Upcoming Events
           </h2>
-          <p className="mt-4 text-muted-foreground">
-            Dates and copy come from public listings hosted by The CF Events Team,
-            including The Augusta Press calendar and ticket pages.
-          </p>
         </div>
         <div className="mt-10 grid gap-4 lg:grid-cols-3">
           {events.map((event) => (
