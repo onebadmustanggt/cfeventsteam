@@ -117,7 +117,7 @@ export const events = [
     ],
     cta: {
       label: "Apply to vend",
-      href: "mailto:cf.vendorevents@gmail.com?subject=Bloom%20and%20Buzz%20Spring%20Market",
+      href: "#contact",
     },
   },
 ];
