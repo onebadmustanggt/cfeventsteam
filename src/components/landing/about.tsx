@@ -1,4 +1,5 @@
-import { aboutCopy, heartValues, offerings } from "@/lib/site";
+import { Badge } from "@/components/ui/badge";
+import { aboutCopy, awards, heartValues, offerings } from "@/lib/site";
 
 export function About() {
   return (
@@ -28,6 +29,76 @@ export function About() {
             </li>
           ))}
         </ul>
+
+        <div className="mt-16 max-w-3xl">
+          <p className="text-xs font-medium tracking-[0.18em] text-primary uppercase">
+            Awards & nominations
+          </p>
+          <h3 className="font-heading mt-3 text-2xl tracking-tight sm:text-3xl">
+            Voted in by the CSRA.
+          </h3>
+          <p className="mt-4 leading-relaxed text-foreground/85">{awards.intro}</p>
+        </div>
+
+        <div className="mt-8 grid gap-4 lg:grid-cols-3">
+          <div className="rounded-2xl border border-border bg-card p-6 lg:col-span-2">
+            <div className="flex flex-wrap items-center gap-2">
+              <p className="font-medium">{awards.communityVotes.source}</p>
+              <Badge variant="secondary">{awards.communityVotes.year}</Badge>
+            </div>
+            <p className="mt-1 text-sm text-muted-foreground">
+              {awards.communityVotes.note}
+            </p>
+            <p className="mt-5 text-xs font-medium tracking-[0.16em] text-primary uppercase">
+              Platinum
+            </p>
+            <ul className="mt-2 flex flex-wrap gap-2">
+              {awards.communityVotes.platinum.map((category) => (
+                <li
+                  key={category}
+                  className="rounded-full bg-primary/10 px-3 py-1 text-sm text-primary"
+                >
+                  {category}
+                </li>
+              ))}
+            </ul>
+            <p className="mt-5 text-xs font-medium tracking-[0.16em] text-muted-foreground uppercase">
+              Gold
+            </p>
+            <ul className="mt-2 flex flex-wrap gap-2">
+              {awards.communityVotes.gold.map((category) => (
+                <li
+                  key={category}
+                  className="rounded-full border border-border px-3 py-1 text-sm"
+                >
+                  {category}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="flex flex-col rounded-2xl border border-border bg-primary p-6 text-primary-foreground">
+            <p className="text-xs font-medium tracking-[0.16em] uppercase text-primary-foreground/70">
+              {awards.bestOfGeorgia.source}
+            </p>
+            <p className="font-heading mt-3 text-2xl leading-tight">
+              {awards.bestOfGeorgia.title}
+            </p>
+            <p className="mt-3 text-sm text-primary-foreground/80">
+              Nominated statewide. If you love what we do in Grovetown and across
+              the CSRA, add your vote.
+            </p>
+            <a
+              href={awards.bestOfGeorgia.href}
+              target="_blank"
+              rel="noreferrer"
+              className="mt-auto pt-6 text-sm font-medium underline underline-offset-4"
+            >
+              {awards.bestOfGeorgia.cta}
+            </a>
+          </div>
+        </div>
+
         <div className="mt-14 grid gap-8 md:grid-cols-3">
           {offerings.map((item, index) => (
             <div key={item.title}>

@@ -51,6 +51,31 @@ export const heartValues = [
   "Supporting local",
 ];
 
+export const awards = {
+  intro:
+    "Our neighbors keep voting us in. CommunityVotes Augusta’s 2026 campaign drew thousands of nominations — 2,574 businesses and individuals — and named the Canterbury Farms Events Team a winner across eight categories. We are also a Best of Georgia nominee from the Georgia Business Journal.",
+  communityVotes: {
+    source: "CommunityVotes Augusta",
+    year: "2026",
+    note: "Listed as the Canterbury Farms Events Team",
+    platinum: [
+      "Advertising",
+      "Community Groups",
+      "Digital Marketing",
+      "Marketing and Advertisement",
+      "Promotional Products",
+      "Social Media Marketing",
+    ],
+    gold: ["Administrative Services", "Event and Party Planning"],
+  },
+  bestOfGeorgia: {
+    title: "Best of Georgia nominee",
+    source: "Georgia Business Journal",
+    cta: "Vote at BestofGeorgia.com",
+    href: "https://bestofgeorgia.com",
+  },
+};
+
 export const events = [
   {
     slug: "spring-collective",
