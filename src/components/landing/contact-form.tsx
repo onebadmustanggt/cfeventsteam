@@ -15,11 +15,13 @@ const MESSAGE_MAX = 500;
 const identities = [
   { value: "vendor", label: "Vendor" },
   { value: "creator", label: "Content Creator" },
+  { value: "sponsor", label: "Potential Sponsor" },
 ] as const;
 
 const reasons = [
   { value: "apply-vendor", label: "I'd like to apply to be a vendor" },
-  { value: "collaborate", label: "I'd like to Collaborate" },
+  { value: "collaborate", label: "I'd like to collaborate" },
+  { value: "sponsorship", label: "Sponsorship" },
 ] as const;
 
 type Identity = (typeof identities)[number]["value"];
@@ -83,12 +85,12 @@ export function ContactForm() {
     }
     if (!identity) {
       setStatus("error");
-      setError("Let us know if you are a vendor or a content creator.");
+      setError("Let us know if you are a vendor, content creator, or potential sponsor.");
       return;
     }
     if (!reason) {
       setStatus("error");
-      setError("Tell us if you want to vend or collaborate.");
+      setError("Tell us if you want to vend, collaborate, or talk sponsorship.");
       return;
     }
     if (!note) {
