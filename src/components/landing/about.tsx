@@ -1,5 +1,5 @@
 import { Badge } from "@/components/ui/badge";
-import { aboutCopy, awards, heartValues, offerings } from "@/lib/site";
+import { aboutCopy, awards, heartValues } from "@/lib/site";
 
 export function About() {
   return (
@@ -97,20 +97,6 @@ export function About() {
               {awards.bestOfGeorgia.cta}
             </a>
           </div>
-        </div>
-
-        <div className="mt-14 grid gap-8 md:grid-cols-3">
-          {offerings.map((item, index) => (
-            <div key={item.title}>
-              <p className="font-mono text-xs tracking-widest text-muted-foreground">
-                0{index + 1}
-              </p>
-              <h3 className="font-heading mt-3 text-2xl">{item.title}</h3>
-              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-                {item.body}
-              </p>
-            </div>
-          ))}
         </div>
       </div>
     </section>

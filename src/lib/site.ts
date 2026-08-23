@@ -29,6 +29,7 @@ export const site = {
 export const navLinks = [
   { href: "#events", label: "Events" },
   { href: "#about", label: "About" },
+  { href: "#services", label: "Services" },
   { href: "#vendors", label: "Vendors" },
   { href: "#contact", label: "Contact" },
 ] as const;
@@ -142,17 +143,45 @@ export const events = [
   },
 ];
 
-export const offerings = [
+export const services = [
   {
-    title: "Festivals & markets",
-    body: "Seasonal festivals and vendor markets that spotlight local businesses and give neighbors a reason to linger.",
+    title: "Event Planning & Coordination",
+    body: "Planning and coordinating community events, markets, festivals, pop-ups, and special events from concept through event day.",
   },
   {
-    title: "Pop-ups & food trucks",
-    body: "Food truck nights, poolside pop-ups, and special events — fun with a purpose, not another crowded lot.",
+    title: "Vendor Market Coordination",
+    body: "Managing vendor applications, communication, placement, requirements, check-in, and day-of-event coordination.",
   },
   {
-    title: "From plan to day-of",
-    body: "Planning, vendor coordination, promotion, setup, communication, and day-of operations. Volunteer-led, community-run.",
+    title: "Festival & Community Event Planning",
+    body: "Creating organized, family-friendly festivals and community events designed to bring people, businesses, and organizations together.",
+  },
+  {
+    title: "Vendor Recruitment & Management",
+    body: "Connecting events with local makers, small businesses, food vendors, service providers, and other community vendors.",
+  },
+  {
+    title: "Event Logistics & Layout Planning",
+    body: "Helping organize vendor layouts, event flow, setup areas, activity spaces, parking considerations, and other event-day logistics.",
+  },
+  {
+    title: "Event Promotion & Marketing Support",
+    body: "Helping promote events, vendors, sponsors, and community partners through social media content, announcements, spotlights, and event campaigns.",
+  },
+  {
+    title: "Small Business & Vendor Promotion",
+    body: "Providing opportunities for local businesses and vendors to gain exposure, connect with customers, and participate in community events throughout the CSRA.",
+  },
+  {
+    title: "Food Truck & Mobile Vendor Coordination",
+    body: "Coordinating food trucks and mobile vendors for community events, private locations, seasonal schedules, and special event lineups.",
+  },
+  {
+    title: "Community Partnerships & Collaborations",
+    body: "Working with local businesses, venues, organizations, and community partners to create collaborative events and experiences.",
+  },
+  {
+    title: "Event Day Management",
+    body: "Providing on-site coordination including vendor check-in, setup oversight, communication, troubleshooting, event flow, and vendor support throughout the event.",
   },
 ];

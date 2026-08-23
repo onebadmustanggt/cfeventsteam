@@ -3,6 +3,7 @@ import { Contact } from "@/components/landing/contact";
 import { Events } from "@/components/landing/events";
 import { Faq } from "@/components/landing/faq";
 import { Hero } from "@/components/landing/hero";
+import { Services } from "@/components/landing/services";
 import { SiteFooter } from "@/components/landing/site-footer";
 import { SiteHeader } from "@/components/landing/site-header";
 import { Vendors } from "@/components/landing/vendors";
@@ -15,6 +16,7 @@ export default function Home() {
         <Hero />
         <Events />
         <About />
+        <Services />
         <Vendors />
         <Faq />
         <Contact />
