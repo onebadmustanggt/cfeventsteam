@@ -62,7 +62,6 @@ export function SiteFooter() {
                   {site.email}
                 </a>
               </li>
-              <li>{site.location}</li>
             </ul>
           </div>
         </div>
