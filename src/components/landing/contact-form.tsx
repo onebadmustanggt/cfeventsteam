@@ -4,9 +4,7 @@ import { useState } from "react";
 import { CheckCircle2, Loader2 } from "lucide-react";
 
 import { buttonVariants } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
 import { site } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
@@ -18,37 +16,33 @@ const roles = [
   { value: "partner", label: "Venue or partnership" },
 ] as const;
 
+const fieldClassName =
+  "h-11 w-full rounded-lg border border-input bg-card px-3 text-base outline-none transition-colors placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 disabled:opacity-50 md:text-sm aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20";
+
 export function ContactForm() {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
   const [role, setRole] = useState<(typeof roles)[number]["value"]>("guest");
-  const [message, setMessage] = useState("");
   const [status, setStatus] = useState<Status>("idle");
   const [error, setError] = useState("");
 
   async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    event.stopPropagation();
 
     const data = new FormData(event.currentTarget);
-    const nextName = String(data.get("name") ?? name).trim();
-    const nextEmail = String(data.get("email") ?? email).trim();
-    const nextMessage = String(data.get("message") ?? message).trim();
-    setName(nextName);
-    setEmail(nextEmail);
-    setMessage(nextMessage);
+    const name = String(data.get("name") ?? "").trim();
+    const email = String(data.get("email") ?? "").trim();
+    const message = String(data.get("message") ?? "").trim();
 
-    if (!nextName) {
+    if (!name) {
       setStatus("error");
       setError("Tell us your name so we know who to write back.");
       return;
     }
-    if (!nextEmail) {
+    if (!email) {
       setStatus("error");
       setError("Add an email so we can reply.");
       return;
     }
-    if (!nextMessage) {
+    if (!message) {
       setStatus("error");
       setError("A short note helps — which event, and what you need.");
       return;
@@ -61,18 +55,12 @@ export function ContactForm() {
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name: nextName,
-          email: nextEmail,
-          role,
-          message: nextMessage,
-        }),
+        body: JSON.stringify({ name, email, role, message }),
       });
-      const data = (await response.json()) as { error?: string };
 
       if (!response.ok) {
         setStatus("error");
-        setError(data.error ?? "Something didn’t send. Try again or email us.");
+        setError("Something didn’t send. Email us directly instead.");
         return;
       }
 
@@ -92,11 +80,11 @@ export function ContactForm() {
         <CheckCircle2 className="mx-auto size-8 text-primary" />
         <p className="font-heading mt-3 text-2xl">We have your note.</p>
         <p className="mt-2 text-sm text-muted-foreground">
-            This page does not store messages yet. For a sure reply, write{" "}
-            <a className="underline underline-offset-4" href={`mailto:${site.email}`}>
-              {site.email}
-            </a>{" "}
-            or message {site.facebook.name} on Facebook.
+          This page does not store messages yet. For a sure reply, write{" "}
+          <a className="underline underline-offset-4" href={`mailto:${site.email}`}>
+            {site.email}
+          </a>{" "}
+          or message {site.facebook.name} on Facebook.
         </p>
       </div>
     );
@@ -105,53 +93,42 @@ export function ContactForm() {
   const invalid = status === "error";
 
   return (
-    <form
-      onSubmit={onSubmit}
-      method="post"
-      action="#contact"
-      className="space-y-4"
-      noValidate
-    >
+    <form onSubmit={onSubmit} className="space-y-4" noValidate>
+      {invalid ? (
+        <p
+          role="alert"
+          className="rounded-lg border border-destructive/30 bg-destructive/10 px-3 py-2 text-sm text-destructive"
+        >
+          {error}
+        </p>
+      ) : (
+        <p className="text-sm text-muted-foreground">
+          We’ll point you to the right inbox. Nothing is stored on this demo form.
+        </p>
+      )}
+
       <div className="grid gap-4 sm:grid-cols-2">
         <div className="space-y-2">
-          <Label htmlFor="name">Name</Label>
-          <Input
-            id="name"
+          <Label htmlFor="contact-name">Name</Label>
+          <input
+            id="contact-name"
             name="name"
             autoComplete="name"
-            value={name}
             disabled={status === "loading"}
             placeholder="Your name"
-            aria-invalid={invalid && !name.trim()}
-            className="h-11 bg-card px-3"
-            onChange={(event) => {
-              setName(event.target.value);
-              if (status === "error") {
-                setStatus("idle");
-                setError("");
-              }
-            }}
+            className={fieldClassName}
           />
         </div>
         <div className="space-y-2">
-          <Label htmlFor="email">Email</Label>
-          <Input
-            id="email"
+          <Label htmlFor="contact-email">Email</Label>
+          <input
+            id="contact-email"
             type="email"
             name="email"
             autoComplete="email"
-            value={email}
             disabled={status === "loading"}
             placeholder="you@email.com"
-            aria-invalid={invalid && !email.trim()}
-            className="h-11 bg-card px-3"
-            onChange={(event) => {
-              setEmail(event.target.value);
-              if (status === "error") {
-                setStatus("idle");
-                setError("");
-              }
-            }}
+            className={fieldClassName}
           />
         </div>
       </div>
@@ -178,37 +155,15 @@ export function ContactForm() {
       </fieldset>
 
       <div className="space-y-2">
-        <Label htmlFor="message">Message</Label>
-        <Textarea
-          id="message"
+        <Label htmlFor="contact-message">Message</Label>
+        <textarea
+          id="contact-message"
           name="message"
-          value={message}
           disabled={status === "loading"}
           placeholder="Which event, what you sell, or how many tickets you need."
-          aria-invalid={invalid && !message.trim()}
-          className="min-h-32 bg-card"
-          onChange={(event) => {
-            setMessage(event.target.value);
-            if (status === "error") {
-              setStatus("idle");
-              setError("");
-            }
-          }}
+          className={cn(fieldClassName, "h-auto min-h-32 py-2")}
         />
       </div>
-
-      {invalid ? (
-        <p
-          role="alert"
-          className="rounded-lg border border-destructive/30 bg-destructive/10 px-3 py-2 text-sm text-destructive"
-        >
-          {error}
-        </p>
-      ) : (
-        <p className="text-sm text-muted-foreground">
-          We’ll point you to the right inbox. Nothing is stored on this demo form.
-        </p>
-      )}
 
       <button
         type="submit"

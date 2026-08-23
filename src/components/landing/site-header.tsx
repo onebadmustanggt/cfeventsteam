@@ -17,7 +17,7 @@ export function SiteHeader() {
   }
 
   return (
-    <header className="sticky top-0 z-50 overflow-visible border-b border-border/70 bg-background/95 backdrop-blur-md">
+    <header className="sticky top-0 z-50 border-b border-border/70 bg-background/95 backdrop-blur-md">
       <div className="mx-auto flex min-h-16 max-w-6xl items-center justify-between gap-4 px-4 py-2 sm:px-6">
         <a href="#top" className="min-w-0" onClick={closeMenu}>
           <BrandMark compact />
@@ -60,7 +60,10 @@ export function SiteHeader() {
 
           <button
             type="button"
-            className={cn(buttonVariants({ variant: "ghost", size: "icon" }), "md:hidden")}
+            className={cn(
+              buttonVariants({ variant: "ghost", size: "icon" }),
+              "md:hidden",
+            )}
             aria-label={mobileOpen ? "Close menu" : "Open menu"}
             aria-expanded={mobileOpen}
             aria-controls="mobile-nav"
@@ -71,34 +74,35 @@ export function SiteHeader() {
         </div>
       </div>
 
-      <div
-        id="mobile-nav"
-        hidden={!mobileOpen}
-        className={cn(
-          "border-t border-border bg-background px-4 py-4 shadow-sm md:hidden",
-          mobileOpen ? "block" : "hidden",
-        )}
-      >
-        <nav className="flex flex-col gap-1">
-          {navLinks.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              onClick={closeMenu}
-              className="rounded-lg px-2 py-2.5 text-sm hover:bg-muted"
-            >
-              {link.label}
-            </a>
-          ))}
-        </nav>
-        <a
-          href="#contact"
-          onClick={closeMenu}
-          className={cn(buttonVariants({ variant: "default" }), "mt-3 inline-flex h-10 w-full")}
+      {mobileOpen ? (
+        <div
+          id="mobile-nav"
+          className="border-t border-border bg-muted px-4 py-4 md:hidden"
         >
-          Get in touch
-        </a>
-      </div>
+          <nav className="flex flex-col gap-1">
+            {navLinks.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                onClick={closeMenu}
+                className="rounded-lg px-2 py-2.5 text-sm hover:bg-background"
+              >
+                {link.label}
+              </a>
+            ))}
+          </nav>
+          <a
+            href="#contact"
+            onClick={closeMenu}
+            className={cn(
+              buttonVariants({ variant: "default" }),
+              "mt-3 inline-flex h-10 w-full",
+            )}
+          >
+            Get in touch
+          </a>
+        </div>
+      ) : null}
     </header>
   );
 }
