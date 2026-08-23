@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Instrument_Serif } from "next/font/google";
+import { Geist, Geist_Mono, Great_Vibes, Instrument_Serif } from "next/font/google";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -19,6 +19,12 @@ const instrument = Instrument_Serif({
   style: ["normal", "italic"],
 });
 
+const greatVibes = Great_Vibes({
+  variable: "--font-great-vibes",
+  subsets: ["latin"],
+  weight: "400",
+});
+
 export const metadata: Metadata = {
   title: "The CF Events Team — Community events in the CSRA",
   description:
@@ -30,7 +36,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} ${instrument.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} ${instrument.variable} ${greatVibes.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">{children}</body>
     </html>

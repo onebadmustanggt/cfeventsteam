@@ -8,7 +8,7 @@ export function SiteFooter() {
     <footer className="mt-auto border-t border-border bg-muted/30 px-4 py-10 sm:px-6">
       <div className="mx-auto flex max-w-6xl flex-col gap-8 sm:flex-row sm:items-start sm:justify-between">
         <div>
-          <BrandMark />
+          <BrandMark className="h-28 w-28 sm:h-32 sm:w-32" />
         </div>
         <div className="flex flex-wrap gap-12 text-sm">
           <div>
