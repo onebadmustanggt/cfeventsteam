@@ -1,5 +1,4 @@
 import { InstagramIcon } from "@/components/landing/instagram-icon";
-
 import { Button } from "@/components/ui/button";
 import { site } from "@/lib/site";
 
@@ -8,22 +7,19 @@ export function Hero() {
     <section className="relative overflow-hidden px-4 pb-16 pt-12 sm:px-6 sm:pb-24 sm:pt-20">
       <div
         aria-hidden
-        className="pointer-events-none absolute -right-24 -top-16 size-[28rem] rounded-full bg-[radial-gradient(circle,oklch(0.78_0.08_85_/_0.45),transparent_68%)]"
+        className="pointer-events-none absolute -right-24 -top-16 size-[28rem] rounded-full bg-[radial-gradient(circle,oklch(0.78_0.1_70_/_0.4),transparent_68%)]"
       />
       <div className="mx-auto grid max-w-6xl items-end gap-12 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)]">
         <div>
           <p className="text-xs font-medium tracking-[0.2em] text-primary uppercase">
-            Augusta · Grovetown · the CSRA
+            Grovetown · Augusta metro · the CSRA · {site.established}
           </p>
           <h1 className="font-heading mt-4 max-w-xl text-4xl leading-[1.08] tracking-tight sm:text-5xl lg:text-[3.4rem]">
-            Markets and nights that feel{" "}
-            <em className="italic text-primary">intentional</em>.
+            Fun with a{" "}
+            <em className="italic text-primary">purpose</em>.
           </h1>
           <p className="mt-5 max-w-lg text-base leading-relaxed text-muted-foreground sm:text-lg">
-            We are The CF Events Team — also known as the Canterbury Farms Vendor
-            Events Team. We host small indoor collectives, ticketed story nights,
-            and community gatherings so local makers have a room that treats them
-            like more than a booth number.
+            {site.bio}
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
             <Button size="lg" className="h-11 px-5" nativeButton={false} render={<a href="#events" />}>
@@ -46,12 +42,12 @@ export function Hero() {
             Follow along
           </p>
           <h2 className="font-heading mt-3 text-3xl leading-tight">
-            The latest lives on Instagram.
+            Recaps live on Instagram.
           </h2>
           <p className="mt-3 text-sm leading-relaxed text-primary-foreground/80">
-            Vendor spotlights, market recaps, and ticket drops land first at{" "}
-            {site.instagram.handle}. Instagram does not let us pull the feed onto
-            this site, so the real photos stay there.
+            Vendor lists, festival flyers, and day-of photos post first at{" "}
+            {site.instagram.handle}. Facebook is {site.facebook.name}. TikTok is{" "}
+            {site.tiktok.handle}.
           </p>
           <Button
             size="lg"
@@ -66,7 +62,7 @@ export function Hero() {
             {site.instagram.handle}
           </Button>
           <p className="mt-4 text-xs text-primary-foreground/65">
-            Facebook page: The CF Events Team · Email {site.email}
+            {site.location} · {site.email}
           </p>
         </aside>
       </div>

@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 
+import { BrandMark } from "@/components/landing/brand-mark";
 import { InstagramIcon } from "@/components/landing/instagram-icon";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { navLinks, site } from "@/lib/site";
@@ -17,12 +18,9 @@ export function SiteHeader() {
 
   return (
     <header className="sticky top-0 z-40 border-b border-border/70 bg-background/80 backdrop-blur-md">
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
-        <a href="#top" className="flex items-center gap-2.5" onClick={closeMenu}>
-          <span className="flex size-8 items-center justify-center rounded-full bg-primary text-[0.65rem] font-medium tracking-wide text-primary-foreground">
-            CF
-          </span>
-          <span className="text-sm font-medium tracking-tight">{site.name}</span>
+      <div className="mx-auto flex min-h-16 max-w-6xl items-center justify-between gap-4 px-4 py-2 sm:px-6">
+        <a href="#top" className="min-w-0" onClick={closeMenu}>
+          <BrandMark compact />
         </a>
 
         <nav className="hidden items-center gap-7 text-sm text-muted-foreground md:flex">

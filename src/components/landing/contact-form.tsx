@@ -78,15 +78,11 @@ export function ContactForm() {
         <CheckCircle2 className="mx-auto size-8 text-primary" />
         <p className="font-heading mt-3 text-2xl">We have your note.</p>
         <p className="mt-2 text-sm text-muted-foreground">
-          This page does not store messages yet. For a sure reply, write{" "}
-          <a className="underline underline-offset-4" href={`mailto:${site.email}`}>
-            {site.email}
-          </a>{" "}
-          or the vendor desk at{" "}
-          <a className="underline underline-offset-4" href={`mailto:${site.vendorEmail}`}>
-            {site.vendorEmail}
-          </a>
-          .
+            This page does not store messages yet. For a sure reply, write{" "}
+            <a className="underline underline-offset-4" href={`mailto:${site.email}`}>
+              {site.email}
+            </a>{" "}
+            or message {site.facebook.name} on Facebook.
         </p>
       </div>
     );

@@ -3,16 +3,16 @@ import { site } from "@/lib/site";
 
 const vendorNotes = [
   {
-    title: "Small on purpose",
-    body: "Spring Collective takes 4 to 6 vendors so the shopping stays personal. Summer Collective stays intimate too — not a giant outdoor lot.",
+    title: "We coordinate the table",
+    body: "Vendor coordination, promotion, setup, and day-of operations are what we do. You bring the goods; we bring the room and the crowd.",
   },
   {
     title: "What we look for",
-    body: "Wellness, coaching, skincare, nutrition, self-care, jewelry, handmade goods, and treats. Alignment matters more than a long inventory list.",
+    body: "Local businesses that fit the gathering — makers, food, wellness, and community partners. Alignment matters more than a long inventory list.",
   },
   {
-    title: "What you get",
-    body: "Indoor setup, one 6 ft table, a downtown Broad Street room, and a guest list that came for you — not for a free inflatable.",
+    title: "Where we host",
+    body: "Canterbury Farms neighborhood events in Grovetown, indoor collectives downtown, food truck nights, poolside pop-ups, and seasonal festivals across the CSRA.",
   },
 ];
 
@@ -28,9 +28,8 @@ export function Vendors() {
             Apply for a table.
           </h2>
           <p className="mt-4 text-muted-foreground">
-            Vendor fees for the indoor collectives have been $25. Selection is
-            curated. Email with the event name in the subject line so it does not
-            get lost.
+            Indoor collectives have been $25 for a 6 ft table, with a small curated
+            lineup. Put the event name in the subject line so it does not get lost.
           </p>
         </div>
         <div className="mt-10 grid gap-6 md:grid-cols-3">
@@ -43,31 +42,16 @@ export function Vendors() {
             </div>
           ))}
         </div>
-        <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+        <div className="mt-8">
           <Button
             size="lg"
             className="h-11 px-5"
             nativeButton={false}
             render={
-              <a
-                href={`mailto:${site.email}?subject=Vendor%20inquiry`}
-              />
+              <a href={`mailto:${site.email}?subject=Vendor%20inquiry`} />
             }
           >
             Email {site.email}
-          </Button>
-          <Button
-            size="lg"
-            variant="outline"
-            className="h-11 px-5"
-            nativeButton={false}
-            render={
-              <a
-                href={`mailto:${site.vendorEmail}?subject=Vendor%20inquiry`}
-              />
-            }
-          >
-            Vendor desk · {site.vendorEmail}
           </Button>
         </div>
       </div>

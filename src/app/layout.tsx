@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Instrument_Serif } from "next/font/google";
+import { Geist, Geist_Mono, Great_Vibes, Instrument_Serif } from "next/font/google";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -19,10 +19,16 @@ const instrument = Instrument_Serif({
   style: ["normal", "italic"],
 });
 
+const greatVibes = Great_Vibes({
+  variable: "--font-great-vibes",
+  subsets: ["latin"],
+  weight: "400",
+});
+
 export const metadata: Metadata = {
-  title: "The CF Events Team — Curated markets & gatherings in the CSRA",
+  title: "The CF Events Team — Community events in the CSRA",
   description:
-    "The CF Events Team hosts small, intentional vendor markets, wellness collectives, and community nights in Augusta and the CSRA. Shop local, apply to vend, or join the next gathering.",
+    "Volunteer-led community events for Canterbury Farms and the CSRA: vendor markets, festivals, food truck nights, pop-ups, and special events. Fun with a purpose.",
   metadataBase: new URL("https://cfeventsteam.com"),
 };
 
@@ -30,7 +36,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} ${instrument.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} ${instrument.variable} ${greatVibes.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">{children}</body>
     </html>

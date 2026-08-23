@@ -1,5 +1,5 @@
+import { BrandMark } from "@/components/landing/brand-mark";
 import { InstagramIcon } from "@/components/landing/instagram-icon";
-
 import { Separator } from "@/components/ui/separator";
 import { navLinks, site } from "@/lib/site";
 
@@ -8,15 +8,10 @@ export function SiteFooter() {
     <footer className="mt-auto border-t border-border bg-muted/30 px-4 py-10 sm:px-6">
       <div className="mx-auto flex max-w-6xl flex-col gap-8 sm:flex-row sm:items-start sm:justify-between">
         <div>
-          <p className="flex items-center gap-2 font-medium">
-            <span className="flex size-8 items-center justify-center rounded-full bg-primary text-[0.65rem] text-primary-foreground">
-              CF
-            </span>
-            {site.name}
-          </p>
-          <p className="mt-3 max-w-xs text-sm text-muted-foreground">
-            Curated vendor markets and community nights in Augusta and the CSRA.
-            Home of {site.domain}.
+          <BrandMark />
+          <p className="mt-4 max-w-xs text-sm text-muted-foreground">
+            Volunteer-led community events for Canterbury Farms and the CSRA.
+            {site.tagline}
           </p>
         </div>
         <div className="flex flex-wrap gap-12 text-sm">
@@ -43,7 +38,27 @@ export function SiteFooter() {
                   className="inline-flex items-center gap-1.5 hover:text-foreground"
                 >
                   <InstagramIcon className="size-3.5" />
-                  {site.instagram.handle}
+                  Instagram {site.instagram.handle}
+                </a>
+              </li>
+              <li>
+                <a
+                  href={site.tiktok.url}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="hover:text-foreground"
+                >
+                  TikTok {site.tiktok.handle}
+                </a>
+              </li>
+              <li>
+                <a
+                  href={site.facebook.url}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="hover:text-foreground"
+                >
+                  Facebook · {site.facebook.name}
                 </a>
               </li>
               <li>
@@ -51,17 +66,16 @@ export function SiteFooter() {
                   {site.email}
                 </a>
               </li>
-              <li>Facebook · The CF Events Team</li>
+              <li>{site.location}</li>
             </ul>
           </div>
         </div>
       </div>
       <Separator className="mx-auto mt-8 max-w-6xl" />
       <p className="mx-auto mt-6 max-w-6xl text-xs text-muted-foreground">
-        © {new Date().getFullYear()} {site.name}. Event details are gathered from
-        public listings. Instagram and Facebook feeds cannot be imported
-        automatically — follow {site.instagram.handle} for photos and last-minute
-        updates.
+        © {new Date().getFullYear()} {site.name}. {site.established}. Messenger:{" "}
+        {site.facebook.name}. Follow {site.instagram.handle} for photos and
+        last-minute updates.
       </p>
     </footer>
   );

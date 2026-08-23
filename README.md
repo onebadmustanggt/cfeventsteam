@@ -1,15 +1,16 @@
 # The CF Events Team
 
-Landing page for [cfeventsteam.com](https://cfeventsteam.com) — curated vendor markets, wellness collectives, and community nights in Augusta and the CSRA.
+Landing page for [cfeventsteam.com](https://cfeventsteam.com) — a volunteer-led community events team for Canterbury Farms and the CSRA.
 
 ## What’s on the page
 
-- Upcoming events drawn from public listings (Spring Collective, Secret Garden Gathering, Summer Collective)
-- Vendor application details and contact emails
-- A contact form with empty, loading, error, and success states
-- Links to Instagram [`@cf.events.team`](https://www.instagram.com/cf.events.team/)
+- About copy from the team
+- Upcoming events from public listings (Spring Collective, Secret Garden Gathering, Summer Collective)
+- Vendor applications
+- Contact form with empty, loading, error, and success states
+- Instagram [`@cf.events.team`](https://www.instagram.com/cf.events.team/), TikTok [`@cf.vendorevents`](https://www.tiktok.com/@cf.vendorevents), Facebook, and `cf.vendorevents@gmail.com`
 
-Instagram and Facebook do not allow this site to import photo feeds without an official app. Recaps and last-minute updates stay on Instagram.
+Photo recaps stay on Instagram and Facebook; those networks do not allow this site to import a live feed.
 
 ## Run locally
 

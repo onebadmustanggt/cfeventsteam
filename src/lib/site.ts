@@ -1,13 +1,23 @@
 export const site = {
   name: "The CF Events Team",
   shortName: "CF Events",
+  established: "EST 2023",
   domain: "cfeventsteam.com",
-  tagline: "Small markets. Real community. The CSRA.",
-  email: "CF.events.team@gmail.com",
-  vendorEmail: "CF.VendorEvents@gmail.com",
+  tagline: "Bringing the community together, one event at a time.",
+  bio: "Augusta metro Events Team bringing together vendor markets, pop-ups, food trucks, local businesses & community connections across the CSRA. Fun with a purpose.",
+  email: "cf.vendorevents@gmail.com",
+  location: "Grovetown, GA 30813",
   instagram: {
     handle: "@cf.events.team",
     url: "https://www.instagram.com/cf.events.team/",
+  },
+  tiktok: {
+    handle: "@cf.vendorevents",
+    url: "https://www.tiktok.com/@cf.vendorevents",
+  },
+  facebook: {
+    name: "The CF Events Team",
+    url: "https://www.facebook.com/cf.events.team",
   },
   venue: {
     name: "720 Collective Studio | Spa",
@@ -22,6 +32,24 @@ export const navLinks = [
   { href: "#vendors", label: "Vendors" },
   { href: "#contact", label: "Contact" },
 ] as const;
+
+export const aboutCopy = {
+  heading: "About The CF Events Team",
+  paragraphs: [
+    "The CF Events Team is a volunteer-led community events team dedicated to creating fun, welcoming, and well-organized experiences for Canterbury Farms and the surrounding community.",
+    "From seasonal festivals and vendor markets to food truck nights, poolside pop-ups, community activities, and special events, our team works behind the scenes to bring residents, local businesses, vendors, and community partners together.",
+    "We handle everything from event planning and vendor coordination to promotion, setup, communication, and day-of-event operations. We are proud to support small businesses throughout the CSRA while creating opportunities for our community to gather, connect, and make memories.",
+    "At the heart of everything we do is community, connection, collaboration, and supporting local.",
+  ],
+  closing: "The CF Events Team: Bringing the community together, one event at a time.",
+};
+
+export const heartValues = [
+  "Community",
+  "Connection",
+  "Collaboration",
+  "Supporting local",
+];
 
 export const events = [
   {
@@ -42,7 +70,7 @@ export const events = [
     ],
     cta: {
       label: "Apply to vend",
-      href: "mailto:CF.events.team@gmail.com?subject=The%20Spring%20Collective",
+      href: "mailto:cf.vendorevents@gmail.com?subject=The%20Spring%20Collective",
     },
   },
   {
@@ -84,22 +112,22 @@ export const events = [
     ],
     cta: {
       label: "Ask about a table",
-      href: "mailto:CF.VendorEvents@gmail.com?subject=The%20Summer%20Collective",
+      href: "mailto:cf.vendorevents@gmail.com?subject=The%20Summer%20Collective",
     },
   },
 ];
 
 export const offerings = [
   {
-    title: "Curated indoor markets",
-    body: "We keep lineups small on purpose. Wellness, beauty, handmade goods, and treats — chosen so guests can actually talk with the people who made them.",
+    title: "Festivals & markets",
+    body: "Seasonal festivals and vendor markets that spotlight local businesses and give neighbors a reason to linger.",
   },
   {
-    title: "Ticketed story nights",
-    body: "Evenings like The Secret Garden Gathering: dress codes, clues, and a room that feels like a story instead of a flyer.",
+    title: "Pop-ups & food trucks",
+    body: "Food truck nights, poolside pop-ups, and special events — fun with a purpose, not another crowded lot.",
   },
   {
-    title: "Community partnerships",
-    body: "We host with 720 Collective on Broad Street and partner on CSRA gatherings — including vendor support for the South Pacific Festival.",
+    title: "From plan to day-of",
+    body: "Planning, vendor coordination, promotion, setup, communication, and day-of operations. Volunteer-led, community-run.",
   },
 ];

@@ -13,7 +13,7 @@ const faqs = [
   },
   {
     q: "How do I get a table?",
-    a: `Email ${site.email} or ${site.vendorEmail} with the event name in the subject line, what you sell, and a link to your shop or Instagram. Spring Collective has been $25 for one indoor 6 ft table, with only 4–6 vendors selected.`,
+    a: `Email ${site.email} with the event name in the subject line, what you sell, and a link to your shop or Instagram. Spring Collective has been $25 for one indoor 6 ft table, with only 4–6 vendors selected.`,
   },
   {
     q: "Where do I buy tickets for Secret Garden?",
@@ -21,7 +21,7 @@ const faqs = [
   },
   {
     q: "Where should I follow for last-minute changes?",
-    a: `Instagram ${site.instagram.handle} is the live channel. Facebook lists the page as The CF Events Team. Weather, lineup, and ticket updates go there first.`,
+    a: `Instagram ${site.instagram.handle} is the live photo channel. Facebook and Messenger: ${site.facebook.name}. TikTok: ${site.tiktok.handle}. Weather, lineup, and ticket updates go there first.`,
   },
   {
     q: "Are you the Florida or Minnesota Canterbury Farms?",

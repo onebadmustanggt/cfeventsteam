@@ -13,23 +13,14 @@ export function Contact() {
             Write us before the room fills up.
           </h2>
           <p className="mt-4 text-muted-foreground">
-            Guests, vendors, and partners all come through the same two inboxes.
-            Use the form, or skip it and email directly.
+            Guests, vendors, and partners come through the same inbox. Use the
+            form, or email and message us directly.
           </p>
           <ul className="mt-6 space-y-2 text-sm">
             <li>
-              Events ·{" "}
+              Email ·{" "}
               <a className="underline underline-offset-4" href={`mailto:${site.email}`}>
                 {site.email}
-              </a>
-            </li>
-            <li>
-              Vendors ·{" "}
-              <a
-                className="underline underline-offset-4"
-                href={`mailto:${site.vendorEmail}`}
-              >
-                {site.vendorEmail}
               </a>
             </li>
             <li>
@@ -44,8 +35,28 @@ export function Contact() {
               </a>
             </li>
             <li>
-              Home base · {site.venue.name}, {site.venue.street}, {site.venue.city}
+              TikTok ·{" "}
+              <a
+                className="underline underline-offset-4"
+                href={site.tiktok.url}
+                target="_blank"
+                rel="noreferrer"
+              >
+                {site.tiktok.handle}
+              </a>
             </li>
+            <li>
+              Facebook / Messenger ·{" "}
+              <a
+                className="underline underline-offset-4"
+                href={site.facebook.url}
+                target="_blank"
+                rel="noreferrer"
+              >
+                {site.facebook.name}
+              </a>
+            </li>
+            <li>Home · {site.location}</li>
           </ul>
         </div>
         <div className="rounded-3xl border border-border bg-card p-5 sm:p-8">
