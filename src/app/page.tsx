@@ -6,7 +6,6 @@ import { Hero } from "@/components/landing/hero";
 import { Services } from "@/components/landing/services";
 import { SiteFooter } from "@/components/landing/site-footer";
 import { SiteHeader } from "@/components/landing/site-header";
-import { Vendors } from "@/components/landing/vendors";
 
 export default function Home() {
   return (
@@ -17,7 +16,6 @@ export default function Home() {
         <Events />
         <About />
         <Services />
-        <Vendors />
         <Faq />
         <Contact />
       </main>
