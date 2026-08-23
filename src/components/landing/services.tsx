@@ -16,24 +16,19 @@ export function Services() {
             management for community events across the CSRA.
           </p>
         </div>
-        <ol className="mt-12 grid gap-4 sm:grid-cols-2">
-          {services.map((service, index) => (
+        <ul className="mt-12 grid gap-4 sm:grid-cols-2">
+          {services.map((service) => (
             <li
               key={service.title}
               className="rounded-2xl border border-border bg-card p-6"
             >
-              <p className="font-mono text-xs tracking-widest text-muted-foreground">
-                {String(index + 1).padStart(2, "0")}
-              </p>
-              <h3 className="font-heading mt-3 text-xl leading-snug">
-                {service.title}
-              </h3>
+              <h3 className="font-heading text-xl leading-snug">{service.title}</h3>
               <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
                 {service.body}
               </p>
             </li>
           ))}
-        </ol>
+        </ul>
       </div>
     </section>
   );
