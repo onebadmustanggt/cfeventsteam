@@ -9,9 +9,6 @@ export function SiteFooter() {
       <div className="mx-auto flex max-w-6xl flex-col gap-8 sm:flex-row sm:items-start sm:justify-between">
         <div>
           <BrandMark />
-          <p className="mt-4 max-w-xs text-sm text-muted-foreground">
-            Volunteer-led community events for Canterbury Farms and the CSRA.
-          </p>
         </div>
         <div className="flex flex-wrap gap-12 text-sm">
           <div>
