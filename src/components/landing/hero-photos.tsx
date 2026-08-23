@@ -12,7 +12,8 @@ export function HeroPhotos() {
   const [paused, setPaused] = useState(false);
 
   useEffect(() => {
-    if (gallery.length < 2 || paused) {
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (gallery.length < 2 || paused || reduceMotion) {
       return;
     }
 
@@ -36,6 +37,8 @@ export function HeroPhotos() {
             key={photo.src}
             src={photo.src}
             alt={photoIndex === index ? photo.alt : ""}
+            loading={photoIndex === 0 ? "eager" : "lazy"}
+            decoding="async"
             className={cn(
               "absolute inset-0 h-full w-full object-cover transition-opacity duration-700",
               photoIndex === index ? "opacity-100" : "opacity-0",

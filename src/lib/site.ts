@@ -26,7 +26,18 @@ export const site = {
   },
 };
 
-export const gallery: { src: string; alt: string }[] = [];
+export const gallery: { src: string; alt: string }[] = [
+  { src: "/gallery/01.webp", alt: "Families and vendors at a CF Events Team outdoor market" },
+  { src: "/gallery/02.webp", alt: "Food trucks and shoppers at a CF Events Team community event" },
+  { src: "/gallery/03.webp", alt: "Vendor tents along a path at a CF Events Team market" },
+  { src: "/gallery/04.webp", alt: "Neighbors walking through a CF Events Team vendor market" },
+  { src: "/gallery/05.webp", alt: "Blue vendor tents and families at a CF Events Team festival" },
+  { src: "/gallery/06.webp", alt: "Face painting and vendor booths at a CF Events Team event" },
+  { src: "/gallery/07.webp", alt: "Food trucks serving a crowd at a CF Events Team market" },
+  { src: "/gallery/08.webp", alt: "A pretzel truck and shoppers at a CF Events Team festival" },
+  { src: "/gallery/09.webp", alt: "Food trucks and families gathering at a CF Events Team event" },
+  { src: "/gallery/10.webp", alt: "A farm-fresh food truck and vendor row at a CF Events Team market" },
+];
 
 export const navLinks = [
   { href: "#events", label: "Events" },
