@@ -24,7 +24,9 @@ export function SiteHeader() {
         </a>
 
         <nav className="hidden items-center gap-7 text-sm text-muted-foreground md:flex">
-          {navLinks.map((link) => (
+          {navLinks
+            .filter((link) => link.href !== "#contact")
+            .map((link) => (
             <a
               key={link.href}
               href={link.href}
@@ -80,7 +82,9 @@ export function SiteHeader() {
           className="border-t border-border bg-muted px-4 py-4 md:hidden"
         >
           <nav className="flex flex-col gap-1">
-            {navLinks.map((link) => (
+            {navLinks
+              .filter((link) => link.href !== "#contact")
+              .map((link) => (
               <a
                 key={link.href}
                 href={link.href}

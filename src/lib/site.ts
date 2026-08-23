@@ -4,7 +4,7 @@ export const site = {
   established: "EST 2023",
   domain: "cfeventsteam.com",
   tagline: "Bringing the community together, one event at a time.",
-  bio: "Augusta metro Events Team bringing together vendor markets, pop-ups, food trucks, local businesses & community connections across the CSRA. Fun with a purpose.",
+  bio: "CF Events Team, bringing together vendor markets, pop-ups, food trucks, local businesses & community connections across the CSRA. Fun with a purpose.",
   email: "cf.vendorevents@gmail.com",
   location: "Grovetown, GA 30813",
   instagram: {

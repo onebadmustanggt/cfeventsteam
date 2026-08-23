@@ -12,7 +12,7 @@ export function Hero() {
       <div className="mx-auto grid max-w-6xl items-end gap-12 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)]">
         <div>
           <p className="text-xs font-medium tracking-[0.2em] text-primary uppercase">
-            Grovetown · Augusta metro · the CSRA · {site.established}
+            Grovetown · Augusta · the CSRA
           </p>
           <h1 className="font-heading mt-4 max-w-xl text-4xl leading-[1.08] tracking-tight sm:text-5xl lg:text-[3.4rem]">
             Fun with a{" "}
