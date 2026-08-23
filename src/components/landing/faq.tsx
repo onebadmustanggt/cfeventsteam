@@ -1,9 +1,7 @@
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
+"use client";
+
+import { useState } from "react";
+import { Minus, Plus } from "lucide-react";
 
 const faqs = [
   {
@@ -45,6 +43,8 @@ const faqs = [
 ];
 
 export function Faq() {
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+
   return (
     <section id="faq" className="px-4 pb-16 sm:px-6 sm:pb-20">
       <div className="mx-auto max-w-6xl">
@@ -54,18 +54,33 @@ export function Faq() {
         <h2 className="font-heading mt-3 max-w-2xl text-3xl tracking-tight sm:text-4xl">
           Frequently asked questions
         </h2>
-        <Accordion multiple={false} className="mt-10 border-t">
-          {faqs.map((item, index) => (
-            <AccordionItem key={item.q} value={`faq-${index}`}>
-              <AccordionTrigger className="py-4 text-base font-medium hover:no-underline">
-                {item.q}
-              </AccordionTrigger>
-              <AccordionContent className="text-muted-foreground leading-relaxed">
-                {item.a}
-              </AccordionContent>
-            </AccordionItem>
-          ))}
-        </Accordion>
+        <div className="mt-10 border-t">
+          {faqs.map((item, index) => {
+            const isOpen = openIndex === index;
+            return (
+              <div key={item.q} className="border-b border-border">
+                <button
+                  type="button"
+                  aria-expanded={isOpen}
+                  className="flex w-full items-start justify-between gap-4 py-4 text-left text-base font-medium"
+                  onClick={() => setOpenIndex(isOpen ? null : index)}
+                >
+                  <span>{item.q}</span>
+                  {isOpen ? (
+                    <Minus className="mt-0.5 size-4 shrink-0" />
+                  ) : (
+                    <Plus className="mt-0.5 size-4 shrink-0" />
+                  )}
+                </button>
+                {isOpen ? (
+                  <p className="pb-4 text-sm leading-relaxed text-muted-foreground">
+                    {item.a}
+                  </p>
+                ) : null}
+              </div>
+            );
+          })}
+        </div>
       </div>
     </section>
   );
