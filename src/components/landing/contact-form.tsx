@@ -21,7 +21,7 @@ const identities = [
 const reasons = [
   { value: "apply-vendor", label: "I'd like to apply to be a vendor" },
   { value: "collaborate", label: "I'd like to collaborate" },
-  { value: "sponsorship", label: "Sponsorship" },
+  { value: "sponsorship", label: "Event Sponsorship" },
 ] as const;
 
 type Identity = (typeof identities)[number]["value"];
