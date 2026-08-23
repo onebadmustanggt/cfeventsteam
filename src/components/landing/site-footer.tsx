@@ -11,7 +11,6 @@ export function SiteFooter() {
           <BrandMark />
           <p className="mt-4 max-w-xs text-sm text-muted-foreground">
             Volunteer-led community events for Canterbury Farms and the CSRA.
-            {site.tagline}
           </p>
         </div>
         <div className="flex flex-wrap gap-12 text-sm">
