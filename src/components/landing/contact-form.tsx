@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { CheckCircle2, Loader2 } from "lucide-react";
 
 import { buttonVariants } from "@/components/ui/button";
@@ -11,6 +11,7 @@ import { cn } from "@/lib/utils";
 type Status = "idle" | "loading" | "success" | "error";
 
 const MESSAGE_MAX = 500;
+const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 const identities = [
   { value: "vendor", label: "Vendor" },
@@ -65,40 +66,57 @@ export function ContactForm() {
   const [status, setStatus] = useState<Status>("idle");
   const [error, setError] = useState("");
 
-  async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault();
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("sent") === "1") {
+      setStatus("success");
+    }
+  }, []);
 
+  function onSubmit(event: React.FormEvent<HTMLFormElement>) {
     const data = new FormData(event.currentTarget);
     const name = String(data.get("name") ?? "").trim();
     const email = String(data.get("email") ?? "").trim();
     const note = message.trim();
 
     if (!name) {
+      event.preventDefault();
       setStatus("error");
       setError("Tell us your name so we know who to write back.");
       return;
     }
     if (!email) {
+      event.preventDefault();
       setStatus("error");
       setError("Add an email so we can reply.");
       return;
     }
+    if (!EMAIL_PATTERN.test(email)) {
+      event.preventDefault();
+      setStatus("error");
+      setError("That email doesn’t look right.");
+      return;
+    }
     if (!identity) {
+      event.preventDefault();
       setStatus("error");
       setError("Let us know if you are a vendor, content creator, or potential sponsor.");
       return;
     }
     if (!reason) {
+      event.preventDefault();
       setStatus("error");
       setError("Tell us if you want to vend, collaborate, or talk sponsorship.");
       return;
     }
     if (!note) {
+      event.preventDefault();
       setStatus("error");
       setError("A short note helps — which event, and what you need.");
       return;
     }
     if (note.length > MESSAGE_MAX) {
+      event.preventDefault();
       setStatus("error");
       setError(`Keep your message to ${MESSAGE_MAX} characters.`);
       return;
@@ -106,63 +124,6 @@ export function ContactForm() {
 
     setStatus("loading");
     setError("");
-
-    const identityLabel = identities.find((item) => item.value === identity)?.label ?? identity;
-    const reasonLabel = reasons.find((item) => item.value === reason)?.label ?? reason;
-
-    try {
-      // Post from the browser. FormSubmit blocks server fetches from Cloudflare Workers.
-      const response = await fetch(
-        `https://formsubmit.co/ajax/${encodeURIComponent(site.email)}`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
-          },
-          body: JSON.stringify({
-            name,
-            email,
-            _replyto: email,
-            _subject: `Website contact — ${reasonLabel}`,
-            _template: "box",
-            _captcha: "false",
-            identity: identityLabel,
-            reason: reasonLabel,
-            message: [
-              `${name} wrote from the CF Events Team website.`,
-              "",
-              `Email: ${email}`,
-              `I'm a: ${identityLabel}`,
-              `I'm writing because: ${reasonLabel}`,
-              "",
-              note,
-            ].join("\n"),
-          }),
-        },
-      );
-
-      const result = (await response.json().catch(() => null)) as
-        | { success?: string | boolean; message?: string }
-        | null;
-
-      const accepted =
-        response.ok &&
-        result != null &&
-        result.success !== false &&
-        result.success !== "false";
-
-      if (!accepted) {
-        setStatus("error");
-        setError(`Something didn’t send. Email ${site.email} instead.`);
-        return;
-      }
-
-      setStatus("success");
-    } catch {
-      setStatus("error");
-      setError(`We couldn’t reach the form just now. Email ${site.email} instead.`);
-    }
   }
 
   if (status === "success") {
@@ -174,7 +135,7 @@ export function ContactForm() {
         <CheckCircle2 className="mx-auto size-8 text-primary" />
         <p className="font-heading mt-3 text-2xl">We have your note.</p>
         <p className="mt-2 text-sm text-muted-foreground">
-          Your note was sent to{" "}
+          It was sent to{" "}
           <a className="underline underline-offset-4" href={`mailto:${site.email}`}>
             {site.email}
           </a>
@@ -185,9 +146,24 @@ export function ContactForm() {
   }
 
   const loading = status === "loading";
+  const identityLabel = identities.find((item) => item.value === identity)?.label ?? "";
+  const reasonLabel = reasons.find((item) => item.value === reason)?.label ?? "";
 
   return (
-    <form onSubmit={onSubmit} className="space-y-4" noValidate>
+    <form
+      action={`https://formsubmit.co/${site.email}`}
+      method="POST"
+      onSubmit={onSubmit}
+      className="space-y-4"
+      noValidate
+    >
+      <input type="hidden" name="_captcha" value="false" />
+      <input type="hidden" name="_template" value="box" />
+      <input type="hidden" name="_next" value={`https://${site.domain}/?sent=1#contact`} />
+      <input type="hidden" name="_subject" value={`Website contact — ${reasonLabel || "message"}`} />
+      <input type="hidden" name="identity" value={identityLabel} />
+      <input type="hidden" name="reason" value={reasonLabel} />
+
       {status === "error" ? (
         <p
           role="alert"
