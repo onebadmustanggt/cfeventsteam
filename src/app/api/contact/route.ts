@@ -59,6 +59,8 @@ async function deliverMessage({
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
+        "User-Agent":
+          "Mozilla/5.0 (compatible; CFEventsTeam/1.0; +https://cfeventsteam.com)",
       },
       body: JSON.stringify({
         name,
@@ -73,6 +75,11 @@ async function deliverMessage({
       }),
     },
   );
+
+  const contentType = response.headers.get("content-type") ?? "";
+  if (!contentType.includes("application/json")) {
+    throw new Error(`FormSubmit returned ${response.status} ${contentType}`);
+  }
 
   if (!response.ok) {
     throw new Error(`FormSubmit responded ${response.status}`);

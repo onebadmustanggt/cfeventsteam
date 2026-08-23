@@ -107,14 +107,52 @@ export function ContactForm() {
     setStatus("loading");
     setError("");
 
-    try {
-      const response = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, identity, reason, message: note }),
-      });
+    const identityLabel = identities.find((item) => item.value === identity)?.label ?? identity;
+    const reasonLabel = reasons.find((item) => item.value === reason)?.label ?? reason;
 
-      if (!response.ok) {
+    try {
+      // Post from the browser. FormSubmit blocks server fetches from Cloudflare Workers.
+      const response = await fetch(
+        `https://formsubmit.co/ajax/${encodeURIComponent(site.email)}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          body: JSON.stringify({
+            name,
+            email,
+            _replyto: email,
+            _subject: `Website contact — ${reasonLabel}`,
+            _template: "box",
+            _captcha: "false",
+            identity: identityLabel,
+            reason: reasonLabel,
+            message: [
+              `${name} wrote from the CF Events Team website.`,
+              "",
+              `Email: ${email}`,
+              `I'm a: ${identityLabel}`,
+              `I'm writing because: ${reasonLabel}`,
+              "",
+              note,
+            ].join("\n"),
+          }),
+        },
+      );
+
+      const result = (await response.json().catch(() => null)) as
+        | { success?: string | boolean; message?: string }
+        | null;
+
+      const accepted =
+        response.ok &&
+        result != null &&
+        result.success !== false &&
+        result.success !== "false";
+
+      if (!accepted) {
         setStatus("error");
         setError(`Something didn’t send. Email ${site.email} instead.`);
         return;
