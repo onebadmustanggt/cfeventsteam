@@ -49,7 +49,7 @@ export const awards = {
   communityVotes: {
     source: "CommunityVotes Augusta",
     year: "2026",
-    note: "CF Events Team",
+    note: "The CF Events Team",
     platinum: [
       "Advertising",
       "Community Groups",
@@ -63,7 +63,7 @@ export const awards = {
   bestOfGeorgia: {
     title: "Best of Georgia nominee",
     source: "Georgia Business Journal",
-    intro: "If you love what we do in Grovetown and across the CSRA, add your vote.",
+    intro: "If you enjoy the events we bring to communities across the CSRA, add your vote.",
     howToTitle: "How to Vote",
     steps: [
       "Click Vote at BestofGeorgia.com below.",
