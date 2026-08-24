@@ -67,14 +67,15 @@ export function ContactForm() {
   const [error, setError] = useState("");
 
   useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    if (params.get("sent") === "1") {
-      setStatus("success");
-      document.getElementById("contact")?.scrollIntoView({ block: "start", behavior: "instant" });
-      const url = new URL(window.location.href);
+    const url = new URL(window.location.href);
+    if (url.searchParams.has("sent")) {
       url.searchParams.delete("sent");
-      url.hash = "contact";
-      window.history.replaceState({}, "", `${url.pathname}${url.hash}`);
+      const query = url.searchParams.toString();
+      window.history.replaceState(
+        {},
+        "",
+        `${url.pathname}${query ? `?${query}` : ""}${url.hash}`,
+      );
     }
   }, []);
 
