@@ -70,60 +70,82 @@ export function ContactForm() {
     const params = new URLSearchParams(window.location.search);
     if (params.get("sent") === "1") {
       setStatus("success");
+      document.getElementById("contact")?.scrollIntoView({ block: "start", behavior: "instant" });
+      const url = new URL(window.location.href);
+      url.searchParams.delete("sent");
+      url.hash = "contact";
+      window.history.replaceState({}, "", `${url.pathname}${url.hash}`);
     }
   }, []);
 
   function onSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+
     const data = new FormData(event.currentTarget);
     const name = String(data.get("name") ?? "").trim();
     const email = String(data.get("email") ?? "").trim();
     const note = message.trim();
 
     if (!name) {
-      event.preventDefault();
       setStatus("error");
       setError("Tell us your name so we know who to write back.");
       return;
     }
     if (!email) {
-      event.preventDefault();
       setStatus("error");
       setError("Add an email so we can reply.");
       return;
     }
     if (!EMAIL_PATTERN.test(email)) {
-      event.preventDefault();
       setStatus("error");
       setError("That email doesn’t look right.");
       return;
     }
     if (!identity) {
-      event.preventDefault();
       setStatus("error");
       setError("Let us know if you are a vendor, content creator, or potential sponsor.");
       return;
     }
     if (!reason) {
-      event.preventDefault();
       setStatus("error");
       setError("Tell us if you want to vend, collaborate, or talk sponsorship.");
       return;
     }
     if (!note) {
-      event.preventDefault();
       setStatus("error");
       setError("A short note helps — which event, and what you need.");
       return;
     }
     if (note.length > MESSAGE_MAX) {
-      event.preventDefault();
       setStatus("error");
       setError(`Keep your message to ${MESSAGE_MAX} characters.`);
       return;
     }
 
+    const form = event.currentTarget;
+    const frameName = "cf-contact-send";
+    let frame = document.getElementById(frameName) as HTMLIFrameElement | null;
+    if (!frame) {
+      frame = document.createElement("iframe");
+      frame.id = frameName;
+      frame.name = frameName;
+      frame.title = "Sending message";
+      frame.className = "sr-only";
+      frame.tabIndex = -1;
+      frame.setAttribute("aria-hidden", "true");
+      document.body.appendChild(frame);
+    }
+
+    form.target = frameName;
+    form.action = `https://formsubmit.co/${site.email}`;
+    form.method = "POST";
+    form.submit();
+
     setStatus("loading");
     setError("");
+    const finish = () => setStatus("success");
+    frame.onload = finish;
+    window.setTimeout(finish, 1200);
   }
 
   if (status === "success") {
@@ -148,16 +170,9 @@ export function ContactForm() {
   const reasonLabel = reasons.find((item) => item.value === reason)?.label ?? "";
 
   return (
-    <form
-      action={`https://formsubmit.co/${site.email}`}
-      method="POST"
-      onSubmit={onSubmit}
-      className="space-y-4"
-      noValidate
-    >
+    <form onSubmit={onSubmit} className="space-y-4" noValidate>
       <input type="hidden" name="_captcha" value="false" />
       <input type="hidden" name="_template" value="box" />
-      <input type="hidden" name="_next" value={`https://${site.domain}/?sent=1#contact`} />
       <input type="hidden" name="_subject" value={`Website contact — ${reasonLabel || "message"}`} />
       <input type="hidden" name="identity" value={identityLabel} />
       <input type="hidden" name="reason" value={reasonLabel} />
