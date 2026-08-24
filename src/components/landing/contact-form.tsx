@@ -133,13 +133,11 @@ export function ContactForm() {
         className="rounded-2xl border border-primary/25 bg-primary/10 px-5 py-8 text-center"
       >
         <CheckCircle2 className="mx-auto size-8 text-primary" />
-        <p className="font-heading mt-3 text-2xl">We have your note.</p>
+        <p className="font-heading mt-3 text-2xl">Thank You for Reaching Out</p>
+        <p className="mt-3 text-base font-medium">Your message is on its way!</p>
         <p className="mt-2 text-sm text-muted-foreground">
-          It was sent to{" "}
-          <a className="underline underline-offset-4" href={`mailto:${site.email}`}>
-            {site.email}
-          </a>
-          . We will reply to the email you left on the form.
+          A member of The CF Events Team will review your submission and respond
+          to the email address you provided.
         </p>
       </div>
     );
